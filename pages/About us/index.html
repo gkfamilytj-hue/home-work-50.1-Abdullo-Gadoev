@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Meet the Mecare healthcare team and discover compassionate care built around you.">
+    <title>About Us | Mecare</title>
+    <link rel="shortcut icon" href="../../assets/20.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./src/output.css">
+</head>
+<body class="min-w-[320px] overflow-x-hidden bg-white font-[Arial,Helvetica,sans-serif] text-[#0c1529] antialiased dark:bg-[#101722] dark:text-[#f5f7fb]">
+    <header class="fixed inset-x-0 top-0 z-50 mx-auto flex h-[clamp(72px,7vw,108px)] w-full items-center justify-between bg-white px-[4vw] text-[clamp(12px,1vw,18px)] shadow-sm dark:bg-[#101722] max-[680px]:grid max-[680px]:h-auto max-[680px]:min-h-[64px] max-[680px]:grid-cols-[1fr_auto] max-[680px]:gap-2 max-[680px]:py-2">
+    <a class="inline-flex items-center gap-2 text-[clamp(17px,1.5vw,26px)] font-bold text-[#111a2d] no-underline dark:text-[#f5f7fb] max-[420px]:text-base" href="../../index.html" aria-label="Mecare home">
+      <span class="grid size-[clamp(28px,2.8vw,44px)] place-items-center rounded bg-[#58bdae] text-white" aria-hidden="true">
+        <svg class="size-[70%]" viewBox="0 0 20 20" fill="none">
+          <path d="M2 10h3l2-4 3 8 2-5 1 2h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      Mecare
+    </a>
+    <div class="contents max-[680px]:flex max-[680px]:items-center max-[680px]:gap-2">
+      <button class="hidden size-9 cursor-pointer place-items-center rounded-md border border-[#e5e7eb] bg-white text-xl text-[#0c1529] max-[680px]:grid dark:border-[#344154] dark:bg-[#202d3f] dark:text-[#f5f7fb]" id="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-navigation">
+        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <button class="grid size-[clamp(34px,3vw,48px)] shrink-0 cursor-pointer place-items-center rounded-full bg-[#eef4f3] p-0 text-[clamp(20px,1.8vw,28px)] leading-none text-[#0c1529] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#55b8ac] dark:bg-[#26364a] dark:text-[#ffe08a] max-[680px]:size-[34px]" id="theme-toggle" type="button" aria-label="Включить тёмную тему" aria-pressed="false">☾</button>
+    </div>
+    <nav class="ml-0 flex items-center gap-[clamp(20px,3vw,48px)] max-[680px]:col-span-full max-[680px]:hidden max-[680px]:flex-col max-[680px]:items-stretch max-[680px]:gap-0 max-[680px]:rounded-lg max-[680px]:bg-white max-[680px]:p-2 max-[680px]:shadow-lg dark:max-[680px]:bg-[#202d3f]" id="main-navigation" aria-label="Main navigation">
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="../../index.html">Home</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="./index.html">About us</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="#team">Doctors</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="../../index.html#health-packages">Pricing</a>
+    </nav>
+    <div class="flex items-center gap-[clamp(12px,2vw,30px)] max-[680px]:hidden">
+      <a class="whitespace-nowrap text-[#0c1529] no-underline dark:text-[#f5f7fb]" href="#team">Join Doctor</a>
+      <a class="whitespace-nowrap rounded-[20px] bg-[#55b8ac] px-[clamp(16px,1.8vw,28px)] py-[clamp(9px,.9vw,14px)] text-[clamp(12px,.95vw,17px)] text-white no-underline" href="../../index.html#health-packages">Get Appointment</a>
+    </div>
+  </header>
+  <main class="px-0 pt-[clamp(72px,7vw,108px)]">
+    <section class="about-hero relative mx-auto mt-6 w-[min(92vw,1200px)] overflow-hidden rounded-[24px] bg-[#e8f7f3] px-[clamp(20px,5vw,72px)] pb-[clamp(22px,3vw,42px)] pt-[clamp(28px,4vw,56px)] dark:bg-[#192d36]" id="team" aria-labelledby="team-title">
+      <div class="about-orb about-orb-one" aria-hidden="true"></div>
+      <div class="about-orb about-orb-two" aria-hidden="true"></div>
+      <div class="relative z-10 mx-auto max-w-[780px] text-center">
+        <p class="about-kicker mb-3 text-xs font-bold uppercase tracking-[.22em] text-[#399d91] dark:text-[#77d6c7]">Care that puts people first</p>
+        <h1 class="about-title m-0 text-[clamp(30px,5vw,58px)] font-bold leading-[1.03] tracking-[-.04em] text-[#101a31] dark:text-white" id="team-title">Meet our Healthcare Team:<br class="max-[540px]:hidden"> Committed to Your Well-Being</h1>
+        <p class="about-intro mx-auto mb-0 mt-4 max-w-[590px] text-[clamp(13px,1.35vw,16px)] leading-relaxed text-slate-600 dark:text-slate-300">Our healthcare team combines expertise, compassion, and a commitment to your well-being, ensuring you receive personalized care.</p>
+        <div class="mt-6 flex items-center justify-center gap-3">
+          <a class="about-button inline-flex items-center gap-2 rounded-full bg-[#55b8ac] px-5 py-3 text-sm font-semibold text-white no-underline shadow-[0_8px_24px_rgba(85,184,172,.25)]" href="#services">Meet Our Consultants <span aria-hidden="true">↗</span></a>
+          <img class="about-avatars w-[clamp(92px,12vw,166px)]" src="../../assets/28.svg" alt="Mecare consultants">
+        </div>
+      </div>
+      <div class="about-photo-grid relative z-10 mx-auto mt-8 grid max-w-[1050px] grid-cols-2 gap-5 max-[600px]:grid-cols-1 max-[600px]:gap-3">
+        <figure class="about-photo m-0 overflow-hidden rounded-[18px]"><img class="aspect-[1.48] w-full object-cover" src="../../assets/29.svg" alt="Mecare doctors collaborating in a modern clinic"></figure>
+        <figure class="about-photo m-0 overflow-hidden rounded-[18px]"><img class="aspect-[1.48] w-full object-cover" src="../../assets/30.svg" alt="A doctor checking a patient's blood pressure"></figure>
+      </div>
+    </section>
+
+    <section class="about-stats mx-auto grid w-[min(88vw,1120px)] grid-cols-4 gap-5 py-[clamp(36px,6vw,76px)] max-[720px]:grid-cols-2 max-[420px]:gap-x-3 max-[420px]:gap-y-6" aria-label="Mecare impact">
+      <article class="about-stat flex items-center gap-3">
+        <span class="about-stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21a8 8 0 0 1 16 0M19 8h4m-2-2v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <div><p class="m-0 text-[clamp(14px,1.5vw,19px)] font-bold">500k+ patients</p><p class="m-0 mt-1 text-[11px] text-slate-500 dark:text-slate-400">Supported healthier lives</p></div>
+      </article>
+      <article class="about-stat flex items-center gap-3">
+        <span class="about-stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 9h17M3.5 15h17M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        <div><p class="m-0 text-[clamp(14px,1.5vw,19px)] font-bold">32+ countries</p><p class="m-0 mt-1 text-[11px] text-slate-500 dark:text-slate-400">Care without borders</p></div>
+      </article>
+      <article class="about-stat flex items-center gap-3">
+        <span class="about-stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+        <div><p class="m-0 text-[clamp(14px,1.5vw,19px)] font-bold">98% satisfied</p><p class="m-0 mt-1 text-[11px] text-slate-500 dark:text-slate-400">Rated by our patients</p></div>
+      </article>
+      <article class="about-stat flex items-center gap-3">
+        <span class="about-stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v9l5 3M5 4l-2 2m18-2 2 2M4 20h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        <div><p class="m-0 text-[clamp(14px,1.5vw,19px)] font-bold">Time savings</p><p class="m-0 mt-1 text-[11px] text-slate-500 dark:text-slate-400">Care that fits your day</p></div>
+      </article>
+    </section>
+
+    <section class="about-story mx-auto grid w-[min(88vw,1120px)] grid-cols-2 items-center gap-[clamp(28px,7vw,100px)] pb-[clamp(54px,8vw,104px)] max-[680px]:grid-cols-1 max-[680px]:gap-8" id="services" aria-labelledby="story-title">
+      <div class="about-story-copy">
+        <p class="about-kicker mb-3 text-xs font-bold uppercase tracking-[.22em] text-[#399d91] dark:text-[#77d6c7]">Our promise</p>
+        <h2 class="m-0 max-w-[510px] text-[clamp(28px,4vw,46px)] font-bold leading-[1.04] tracking-[-.035em] text-[#101a31] dark:text-white" id="story-title">Passionate about care, committed to better.</h2>
+        <p class="mt-4 max-w-[470px] text-sm leading-relaxed text-slate-600 dark:text-slate-300">Our unwavering commitment to care motivates us to constantly strive for improvement, making every visit feel personal and every next step feel clear.</p>
+        <a class="about-learn mt-2 inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold text-[#101a31] no-underline dark:border-slate-700 dark:text-white" href="../../index.html#care-solutions-title">Learn more <span aria-hidden="true">↗</span></a>
+        <div class="mt-8 grid max-w-[450px] grid-cols-3 gap-3" aria-label="Our services">
+          <article class="about-service">
+            <span class="about-service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M9 10h6m-3-3v6m-5 3h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+            <h3 class="mt-2 text-xs font-semibold leading-snug">Telemedicine<br>Service</h3>
+          </article>
+          <article class="about-service">
+            <span class="about-service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3 class="mt-2 text-xs font-semibold leading-snug">Chronic<br>Management</h3>
+          </article>
+          <article class="about-service">
+            <span class="about-service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M4 21a8 8 0 0 1 16 0m-8-9v5m-2-2h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+            <h3 class="mt-2 text-xs font-semibold leading-snug">Elderly Health<br>Services</h3>
+          </article>
+        </div>
+      </div>
+      <figure class="about-story-image relative m-0 mx-auto w-full max-w-[500px]">
+        <span class="about-image-frame absolute -right-3 -top-3 h-[90%] w-[86%] rounded-[26px] border border-[#b8eee2]" aria-hidden="true"></span>
+        <img class="relative z-10 aspect-[1.12] w-full rounded-[26px] object-cover" src="../../assets/38.svg" alt="A young patient sharing a joyful high-five with a doctor">
+        <span class="about-image-spark absolute -bottom-4 -left-4 z-20 grid size-12 place-items-center rounded-full bg-white text-xl text-[#55b8ac] shadow-lg dark:bg-[#243849]" aria-hidden="true">✦</span>
+      </figure>
+    </section>
+
+    <section class="wellbeing-section mx-auto w-[min(88vw,1120px)] pb-[clamp(56px,8vw,104px)]" id="wellbeing" aria-labelledby="wellbeing-title">
+      <header class="wellbeing-heading mx-auto max-w-[640px] text-center">
+        <p class="about-kicker mb-2 text-xs font-bold uppercase tracking-[.2em] text-[#399d91] dark:text-[#77d6c7]">Care for every chapter</p>
+        <h2 class="m-0 text-[clamp(25px,3.8vw,40px)] font-bold leading-[1.08] tracking-[-.03em] text-[#101a31] dark:text-white" id="wellbeing-title">Committed to Your Well-Being at Every Stage</h2>
+        <p class="mx-auto mb-0 mt-3 max-w-[560px] text-[clamp(12px,1.3vw,15px)] leading-relaxed text-slate-600 dark:text-slate-300">We're dedicated to your well-being at every stage of life, providing personalized care and expert support tailored to your needs.</p>
+      </header>
+
+      <div class="wellbeing-image-wrap relative mt-7 overflow-hidden rounded-[20px] bg-[#153743]">
+        <video class="wellbeing-video aspect-[2.35] w-full object-cover max-[600px]:aspect-[1.45]" id="care-video" controls playsinline preload="metadata" poster="../../assets/39.svg" aria-label="Mecare healthcare and well-being video">
+          <source src="../../assets/видео5.mp4" type="video/mp4">
+          Your browser does not support HTML video.
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#102b38]/45 via-transparent to-[#102b38]/20" aria-hidden="true"></div>
+        <div class="wellbeing-glow wellbeing-glow-one" aria-hidden="true"></div>
+        <div class="wellbeing-glow wellbeing-glow-two" aria-hidden="true"></div>
+        <button class="wellbeing-pulse absolute left-1/2 top-1/2 z-10 grid size-[58px] -translate-x-1/2 -translate-y-1/2 cursor-pointer place-items-center rounded-full border-0 bg-[#ffe276] text-[#143744] shadow-[0_0_0_10px_rgba(255,226,118,.2)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" id="care-video-play" type="button" aria-label="Play video">
+          <svg class="ml-1 size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M6 3.8c0-.8.9-1.3 1.6-.9l8 5.2a1.1 1.1 0 0 1 0 1.8l-8 5.2c-.7.4-1.6-.1-1.6-.9V3.8Z"/></svg>
+        </button>
+        <p class="wellbeing-video-error absolute bottom-4 left-1/2 z-10 m-0 w-max max-w-[calc(100%-32px)] -translate-x-1/2 rounded-lg bg-[#7f1d1d]/95 px-4 py-2 text-center text-xs font-semibold text-white shadow-lg" id="care-video-error" role="alert" hidden>Не удалось воспроизвести видео. Проверьте файл и попробуйте ещё раз.</p>
+        <span class="wellbeing-cross absolute right-[15%] top-[24%] text-2xl font-light text-white/80" aria-hidden="true">+</span>
+        <span class="wellbeing-cross absolute bottom-[23%] left-[18%] text-xl font-light text-white/70" aria-hidden="true">+</span>
+      </div>
+
+      <div class="wellbeing-cards mt-5 grid grid-cols-3 gap-4 max-[680px]:grid-cols-1">
+        <article class="wellbeing-card wellbeing-card-mint">
+          <img class="size-9" src="../../assets/40.svg" alt="" aria-hidden="true">
+          <h3 class="mt-3 text-sm font-bold text-[#132b37]">Resident Care</h3>
+          <p class="mt-1 text-xs leading-relaxed text-[#3d555d]">Resident care offers compassionate, comprehensive support in assisted living and nursing homes.</p>
+        </article>
+        <article class="wellbeing-card wellbeing-card-rose">
+          <img class="size-9" src="../../assets/41.svg" alt="" aria-hidden="true">
+          <h3 class="mt-3 text-sm font-bold text-[#132b37]">Quality Healthcare</h3>
+          <p class="mt-1 text-xs leading-relaxed text-[#3d555d]">Quality healthcare means providing exceptional medical services with a focus on patient-centered care.</p>
+        </article>
+        <article class="wellbeing-card wellbeing-card-gold">
+          <img class="size-9" src="../../assets/42.svg" alt="" aria-hidden="true">
+          <h3 class="mt-3 text-sm font-bold text-[#132b37]">24/7 Support</h3>
+          <p class="mt-1 text-xs leading-relaxed text-[#3d555d]">Round-the-clock support for your healthcare needs, anytime, anywhere.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="benefits-section mx-auto grid w-[min(88vw,1120px)] grid-cols-2 items-center gap-[clamp(28px,6vw,78px)] pb-[clamp(64px,9vw,120px)] max-[680px]:grid-cols-1" aria-labelledby="benefits-title">
+      <div class="benefits-copy">
+        <p class="about-kicker mb-2 text-xs font-bold uppercase tracking-[.2em] text-[#399d91] dark:text-[#77d6c7]">Thoughtful by design</p>
+        <h2 class="m-0 text-[clamp(26px,3.6vw,40px)] font-bold leading-[1.08] tracking-[-.03em] text-[#101a31] dark:text-white" id="benefits-title">Benefits Tailored to You</h2>
+        <p class="mb-0 mt-3 max-w-[460px] text-sm leading-relaxed text-slate-600 dark:text-slate-300">Experience personalized benefits designed to meet your unique needs. We're here to make your care simple, connected, and supportive.</p>
+        <figure class="benefits-image-wrap relative m-0 mt-6 overflow-hidden rounded-[18px]">
+          <img class="benefits-image aspect-[1.68] w-full object-cover" src="../../assets/43.svg" alt="Connected healthcare professionals and digital medical tools">
+          <div class="absolute inset-0 bg-gradient-to-tr from-[#072b3c]/25 to-transparent" aria-hidden="true"></div>
+          <span class="benefits-image-badge absolute bottom-4 right-4 grid size-10 place-items-center rounded-full bg-white/90 text-[#55b8ac] shadow-md" aria-hidden="true">✦</span>
+        </figure>
+      </div>
+      <ul class="benefit-list m-0 grid list-none gap-4 p-0">
+        <li class="benefit-item flex items-start gap-3">
+          <img class="mt-0.5 size-7 shrink-0" src="../../assets/44.svg" alt="" aria-hidden="true">
+          <div><h3 class="m-0 text-sm font-semibold">Streamlined Appointment Scheduling</h3><p class="m-0 mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">Easily book and manage your medical appointments.</p></div>
+        </li>
+        <li class="benefit-item flex items-start gap-3">
+          <img class="mt-0.5 size-7 shrink-0" src="../../assets/45.svg" alt="" aria-hidden="true">
+          <div><h3 class="m-0 text-sm font-semibold">Comprehensive Health Records</h3><p class="m-0 mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">Access and manage all your health records in one secure location.</p></div>
+        </li>
+        <li class="benefit-item flex items-start gap-3">
+          <img class="mt-0.5 size-7 shrink-0" src="../../assets/46.svg" alt="" aria-hidden="true">
+          <div><h3 class="m-0 text-sm font-semibold">Personalized Care Plans</h3><p class="m-0 mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">Receive tailored care plans based on your health history and current needs.</p></div>
+        </li>
+        <li class="benefit-item flex items-start gap-3">
+          <img class="mt-0.5 size-7 shrink-0" src="../../assets/47.svg" alt="" aria-hidden="true">
+          <div><h3 class="m-0 text-sm font-semibold">Expert Medical Team</h3><p class="m-0 mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">Benefit from consultations with a team of highly qualified healthcare professionals.</p></div>
+        </li>
+        <li class="benefit-item flex items-start gap-3">
+          <img class="mt-0.5 size-7 shrink-0" src="../../assets/48.svg" alt="" aria-hidden="true">
+          <div><h3 class="m-0 text-sm font-semibold">Secure Communication</h3><p class="m-0 mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">Get in touch with your healthcare team and information whenever you need it.</p></div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="specialists-section mx-auto mb-[clamp(56px,8vw,104px)] w-[min(88vw,1120px)]" id="specialists" aria-labelledby="specialists-title">
+      <header class="mx-auto mb-7 max-w-[680px] text-center sm:mb-9">
+        <p class="about-kicker mb-2 text-xs font-bold uppercase tracking-[.18em] text-[#55b8ac] sm:text-sm">People behind your care</p>
+        <h2 class="m-0 text-[clamp(26px,4vw,42px)] font-bold leading-tight tracking-[-.03em] text-[#111a2d] dark:text-[#f5f7fb]" id="specialists-title">Designed for specialists, leading healthcare excellence.</h2>
+        <p class="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-600 sm:text-base dark:text-slate-300">Discover a platform designed for trailblazing specialists. Our resources empower leaders in healthcare innovation and excellence.</p>
+      </header>
+
+      <div class="overflow-hidden" id="specialists-carousel" aria-label="Healthcare specialists carousel">
+        <div class="flex gap-3 transition-transform duration-500 motion-reduce:transition-none lg:gap-4" id="specialists-track">
+          <article class="specialist-card relative h-56 w-[calc((100%-12px)/2)] shrink-0 overflow-hidden rounded-xl bg-[#e8f2f1] sm:h-64 sm:w-[calc((100%-24px)/3)] lg:w-[calc((100%-48px)/4)]">
+            <img class="specialist-card-image size-full object-cover" src="../../assets/6.svg" alt="Portrait of a cardiologist">
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#145c5a]/95 to-transparent px-3 pb-3 pt-10 text-white">
+              <h3 class="text-sm font-bold">Cardiology team</h3><p class="mt-1 text-xs text-white/85">Heart health</p>
+            </div>
+          </article>
+          <article class="specialist-card relative h-56 w-[calc((100%-12px)/2)] shrink-0 overflow-hidden rounded-xl bg-[#e8f2f1] sm:h-64 sm:w-[calc((100%-24px)/3)] lg:w-[calc((100%-48px)/4)]">
+            <img class="specialist-card-image size-full object-cover" src="../../assets/7.svg" alt="Portrait of a family medicine doctor">
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#145c5a]/95 to-transparent px-3 pb-3 pt-10 text-white">
+              <h3 class="text-sm font-bold">Family medicine</h3><p class="mt-1 text-xs text-white/85">Everyday care</p>
+            </div>
+          </article>
+          <article class="specialist-card relative h-56 w-[calc((100%-12px)/2)] shrink-0 overflow-hidden rounded-xl bg-[#e8f2f1] sm:h-64 sm:w-[calc((100%-24px)/3)] lg:w-[calc((100%-48px)/4)]">
+            <img class="specialist-card-image size-full object-cover" src="../../assets/8.svg" alt="Portrait of an internal medicine doctor">
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#145c5a]/95 to-transparent px-3 pb-3 pt-10 text-white">
+              <h3 class="text-sm font-bold">Internal medicine</h3><p class="mt-1 text-xs text-white/85">Whole-person health</p>
+            </div>
+          </article>
+          <article class="specialist-card relative h-56 w-[calc((100%-12px)/2)] shrink-0 overflow-hidden rounded-xl bg-[#e8f2f1] sm:h-64 sm:w-[calc((100%-24px)/3)] lg:w-[calc((100%-48px)/4)]">
+            <img class="specialist-card-image size-full object-cover" src="../../assets/9.svg" alt="Portrait of a preventive care doctor">
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#145c5a]/95 to-transparent px-3 pb-3 pt-10 text-white">
+              <h3 class="text-sm font-bold">Preventive care</h3><p class="mt-1 text-xs text-white/85">Screening support</p>
+            </div>
+          </article>
+          <article class="specialist-card relative h-56 w-[calc((100%-12px)/2)] shrink-0 overflow-hidden rounded-xl bg-[#e8f2f1] sm:h-64 sm:w-[calc((100%-24px)/3)] lg:w-[calc((100%-48px)/4)]">
+            <img class="specialist-card-image size-full object-cover" src="../../assets/10.svg" alt="Portrait of a dermatologist">
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#145c5a]/95 to-transparent px-3 pb-3 pt-10 text-white">
+              <h3 class="text-sm font-bold">Dermatology</h3><p class="mt-1 text-xs text-white/85">Skin health</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="mt-4 flex items-center justify-between">
+        <div class="flex items-center gap-1.5" role="group" aria-label="Choose specialists carousel page">
+          <button class="specialist-dot size-2 rounded-full bg-[#55b8ac]" type="button" aria-label="Show specialists page 1" aria-current="true" data-page="0"></button>
+          <button class="specialist-dot size-2 rounded-full bg-[#cdebe6]" type="button" aria-label="Show specialists page 2" aria-current="false" data-page="2"></button>
+          <button class="specialist-dot size-2 rounded-full bg-[#cdebe6]" type="button" aria-label="Show specialists page 3" aria-current="false" data-page="4"></button>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="specialist-prev grid size-9 place-items-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-[#55b8ac] hover:text-[#168f83] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#55b8ac] dark:border-slate-600 dark:bg-[#202d3f] dark:text-slate-200" type="button" aria-label="Previous specialists">
+            <svg class="size-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 10h-11m0 0 4.5-4.5M4.5 10l4.5 4.5"/></svg>
+          </button>
+          <button class="specialist-next grid size-9 place-items-center rounded-lg bg-[#55b8ac] text-white transition hover:bg-[#429f94] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#55b8ac]" type="button" aria-label="Next specialists">
+            <svg class="size-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 10h11m0 0L11 5.5m4.5 4.5L11 14.5"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="appointment-cta relative mx-auto my-12 grid w-[min(92vw,1200px)] overflow-hidden rounded-[28px] bg-[#61cdbb] px-6 py-10 text-[#082c35] shadow-[0_24px_70px_rgba(54,174,157,.2)] sm:my-16 sm:grid-cols-2 sm:items-center sm:px-10 sm:py-12 lg:my-20 lg:min-h-[340px] lg:px-14" aria-labelledby="appointment-cta-title">
+      <div class="appointment-orb appointment-orb-one pointer-events-none absolute -left-12 -top-14 size-36 rounded-full bg-white/20" aria-hidden="true"></div>
+      <div class="appointment-orb appointment-orb-two pointer-events-none absolute -bottom-16 left-[42%] size-48 rounded-full border-[18px] border-white/10" aria-hidden="true"></div>
+      <div class="appointment-copy relative z-10 max-w-xl">
+        <p class="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#eafffa] sm:text-sm">Your next step starts here</p>
+        <h2 class="text-3xl font-bold leading-[1.08] tracking-[-.025em] sm:text-4xl lg:text-5xl" id="appointment-cta-title">Schedule your appointment with us</h2>
+        <p class="mt-4 max-w-lg text-sm leading-6 text-[#124d50] sm:text-base">We're here to help. Whether you have questions about our services or need support choosing a health plan, our care team is ready to guide you.</p>
+        <a class="appointment-cta-button group mt-6 inline-flex items-center gap-2 rounded-full bg-[#102c46] px-6 py-3 text-sm font-semibold text-white no-underline shadow-[0_8px_18px_rgba(16,44,70,.18)] transition-[transform,box-shadow,background-color] duration-200 hover:-translate-y-1 hover:bg-[#173c5d] hover:shadow-[0_14px_26px_rgba(16,44,70,.24)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0" href="#health-packages">
+          Get started
+          <svg class="size-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 10h11m0 0L11 5.5m4.5 4.5L11 14.5"/></svg>
+        </a>
+      </div>
+
+      <div class="appointment-illustration relative mx-auto mt-8 flex min-h-52 w-full max-w-[520px] items-center justify-center sm:mt-0 sm:min-h-64 lg:min-h-[280px]" aria-label="Illustration of an online appointment calendar">
+        <div class="appointment-glow pointer-events-none absolute right-[12%] top-[14%] size-44 rounded-full bg-white/20 blur-2xl" aria-hidden="true"></div>
+        <img class="appointment-calendar relative z-10 w-full max-w-[490px] drop-shadow-[0_20px_28px_rgba(19,81,83,.15)]" src="../../assets/17.svg" alt="Online calendar showing available healthcare appointments">
+        <img class="appointment-avatar appointment-avatar-top absolute left-[11%] top-[4%] z-20 size-12 rounded-full border-4 border-white object-cover shadow-lg sm:left-[7%] sm:size-14" src="../../assets/18.svg" alt="">
+        <img class="appointment-avatar appointment-avatar-bottom absolute bottom-[1%] right-[8%] z-20 size-12 rounded-full border-4 border-white object-cover shadow-lg sm:right-[5%] sm:size-14" src="../../assets/19.svg" alt="">
+        <span class="appointment-status absolute right-[3%] top-[17%] z-20 inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/95 px-3 py-2 text-[10px] font-semibold text-[#176f68] shadow-lg sm:right-[1%] sm:text-xs">
+          <span class="relative flex size-2"><span class="appointment-status-ping absolute inline-flex size-full rounded-full bg-[#55b8ac] opacity-70"></span><span class="relative inline-flex size-2 rounded-full bg-[#329c8e]"></span></span>
+          Appointments available
+        </span>
+      </div>
+    </section>
+  </main>
+
+  
+  <footer class="site-footer relative mt-16 bg-white dark:bg-[#101722]" id="site-footer">
+    <div class="mx-auto w-[min(92vw,1200px)]">
+      <div class="grid gap-8 py-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 lg:py-14">
+        <div class="footer-column">
+          <h2 class="text-sm font-bold text-[#111a2d] dark:text-[#f5f7fb]">Solutions</h2>
+          <ul class="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <li><a class="footer-link" href="../../index.html#health-packages">Health check-up plans</a></li>
+            <li><a class="footer-link" href="../../index.html#care-solutions-title">Healthcare solutions</a></li>
+            <li><a class="footer-link" href="../../index.html">Health insights</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h2 class="text-sm font-bold text-[#111a2d] dark:text-[#f5f7fb]">Company</h2>
+          <ul class="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <li><a class="footer-link" href="#story-title">About us</a></li>
+            <li><a class="footer-link" href="../../index.html">Health journal</a></li>
+            <li><a class="footer-link" href="#site-footer">Careers</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h2 class="text-sm font-bold text-[#111a2d] dark:text-[#f5f7fb]">Get in touch</h2>
+          <address class="mt-4 space-y-3 text-sm not-italic text-slate-600 dark:text-slate-300">
+            <a class="footer-contact" href="tel:+18005550100"><img class="size-4" src="../../assets/21.svg" alt=""><span>(800) 555-0100</span></a>
+            <a class="footer-contact" href="mailto:hello@mecare.example"><img class="size-4" src="../../assets/22.svg" alt=""><span>hello@mecare.example</span></a>
+            <p class="footer-contact items-start"><img class="mt-0.5 size-4" src="../../assets/23.svg" alt=""><span>Online care and support<br>wherever you are</span></p>
+          </address>
+        </div>
+
+        <div class="footer-column">
+          <h2 class="text-sm font-bold text-[#111a2d] dark:text-[#f5f7fb]">Follow us on</h2>
+          <div class="mt-4 flex items-center gap-4" aria-label="Social networks">
+            <span class="footer-social" aria-label="Facebook"><img class="size-4" src="../../assets/24.svg" alt=""></span>
+            <span class="footer-social" aria-label="LinkedIn"><img class="size-4" src="../../assets/25.svg" alt=""></span>
+            <span class="footer-social" aria-label="Instagram"><img class="size-4" src="../../assets/26.svg" alt=""></span>
+            <span class="footer-social" aria-label="YouTube"><img class="size-4" src="../../assets/27.svg" alt=""></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-5 border-t border-slate-200 py-5 text-center sm:flex-row sm:justify-between sm:text-left dark:border-slate-700">
+        <p class="text-xs text-slate-500 dark:text-slate-400">© 2026 Mecare. All rights reserved.</p>
+        <a class="inline-flex items-center gap-2 text-base font-bold text-[#111a2d] no-underline dark:text-[#f5f7fb]" href="../../index.html" aria-label="Mecare home">
+          <img class="size-7 rounded-md" src="../../assets/20.svg" alt="">
+          Mecare
+        </a>
+        <div class="flex items-center gap-5 text-xs text-slate-500 dark:text-slate-400">
+          <a class="footer-link" href="#site-footer">Terms of service</a>
+          <a class="footer-link" href="#site-footer">Privacy policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="./js.js" defer></script>
+</body>
+</html>

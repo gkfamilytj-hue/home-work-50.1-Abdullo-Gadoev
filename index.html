@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="src/output.css">
 </head>
 <body class="no-scrollbar min-w-[320px] overflow-x-hidden bg-white font-[Arial,Helvetica,sans-serif] text-[#0c1529] antialiased dark:bg-[#101722] dark:text-[#f5f7fb]">
-  <header class="mx-auto flex h-[clamp(72px,7vw,108px)] w-[min(92vw,1440px)] items-center justify-between text-[clamp(12px,1vw,18px)] max-[680px]:grid max-[680px]:h-auto max-[680px]:min-h-[64px] max-[680px]:grid-cols-[1fr_auto] max-[680px]:gap-2 max-[680px]:py-2">
+  <header class="fixed inset-x-0 top-0 z-50 mx-auto flex h-[clamp(72px,7vw,108px)] w-full items-center justify-between bg-white px-[4vw] text-[clamp(12px,1vw,18px)] shadow-sm dark:bg-[#101722] max-[680px]:grid max-[680px]:h-auto max-[680px]:min-h-[64px] max-[680px]:grid-cols-[1fr_auto] max-[680px]:gap-2 max-[680px]:py-2">
     <a class="inline-flex items-center gap-2 text-[clamp(17px,1.5vw,26px)] font-bold text-[#111a2d] no-underline dark:text-[#f5f7fb] max-[420px]:text-base" href="#" aria-label="Mecare home">
       <span class="grid size-[clamp(28px,2.8vw,44px)] place-items-center rounded bg-[#58bdae] text-white" aria-hidden="true">
         <svg class="size-[70%]" viewBox="0 0 20 20" fill="none">
@@ -24,10 +24,11 @@
       <button class="grid size-[clamp(34px,3vw,48px)] shrink-0 cursor-pointer place-items-center rounded-full bg-[#eef4f3] p-0 text-[clamp(20px,1.8vw,28px)] leading-none text-[#0c1529] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#55b8ac] dark:bg-[#26364a] dark:text-[#ffe08a] max-[680px]:size-[34px]" id="theme-toggle" type="button" aria-label="Включить тёмную тему" aria-pressed="false">☾</button>
     </div>
     <nav class="ml-0 flex items-center gap-[clamp(20px,3vw,48px)] max-[680px]:col-span-full max-[680px]:hidden max-[680px]:flex-col max-[680px]:items-stretch max-[680px]:gap-0 max-[680px]:rounded-lg max-[680px]:bg-white max-[680px]:p-2 max-[680px]:shadow-lg dark:max-[680px]:bg-[#202d3f]" id="main-navigation" aria-label="Main navigation">
-      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="#">Home</a>
-      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="#">Service</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="./index.html">Home</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="./pages/About us/index.html">Service</a>
       <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="#">Doctors</a>
       <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="#">Pricing</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="pages/About%20us/index.html">About us</a>
     </nav>
     <div class="flex items-center gap-[clamp(12px,2vw,30px)] max-[680px]:hidden">
       <a class="whitespace-nowrap text-[#0c1529] no-underline dark:text-[#f5f7fb]" href="#">Join Doctor</a>
@@ -35,7 +36,7 @@
     </div>
   </header>
 
-  <main>
+  <main class="pt-[clamp(72px,7vw,108px)] max-[680px]:pt-[64px]">
     <section class="relative mx-auto h-[clamp(320px,38vw,560px)] w-[min(92vw,1440px)] overflow-hidden rounded-lg bg-[radial-gradient(ellipse_at_17%_0%,rgba(201,241,220,.5)_0_24%,transparent_24.2%),radial-gradient(ellipse_at_90%_117%,rgba(178,232,210,.55)_0_23%,transparent_23.2%),linear-gradient(118deg,#96dfc7_0%,#72d5c3_55%,#8adcc9_100%)] max-[680px]:h-[clamp(250px,72vw,300px)] max-[420px]:h-[270px]" aria-label="Excellent healthcare">
       <h1 class="absolute left-0 top-[11%] z-[1] m-0 w-full whitespace-nowrap text-center text-[clamp(48px,6.2vw,98px)] font-bold leading-none tracking-[-.02em] text-[rgba(235,255,249,.78)] max-[680px]:top-[8%] max-[680px]:text-[clamp(22px,6.5vw,30px)] max-[680px]:tracking-[-.5px]">Excellent Healthcare</h1>
       <div class="absolute left-[25.5%] top-[42%] z-[2] flex items-center gap-[clamp(7px,.8vw,14px)] whitespace-nowrap text-[clamp(14px,1.1vw,19px)] max-[680px]:left-[5%] max-[680px]:top-[31%] max-[680px]:gap-1 max-[680px]:text-[10px]">
@@ -63,7 +64,7 @@
       </div>
     </section>
 
-    <section class="mx-auto mt-[clamp(24px,2.4vw,42px)] grid w-[min(92vw,1440px)] grid-cols-3 gap-[clamp(18px,2vw,36px)] max-[680px]:grid-cols-1 max-[680px]:gap-3" aria-label="Our services">
+    <section class="mx-auto mt-[clamp(24px,2.4vw,42px)] grid w-[min(92vw,1440px)] grid-cols-3 gap-[clamp(18px,2vw,36px)] max-[680px]:grid-cols-1 max-[680px]:gap-3" id="services" aria-label="Our services">
       <article class="relative min-h-[clamp(200px,18vw,300px)] rounded-[10px] bg-[#ffdddd] px-[clamp(22px,2.7vw,44px)] pb-6 pt-[clamp(26px,2.5vw,42px)] max-[680px]:min-h-[145px] max-[680px]:px-4 max-[680px]:pb-[48px] max-[680px]:pt-4 max-[680px]:rounded-md">
         <h2 class="m-0 mb-[clamp(16px,1.6vw,26px)] whitespace-nowrap text-[clamp(16px,1.35vw,23px)] font-semibold leading-[1.1] max-[680px]:mb-2 max-[680px]:text-[14px]">Qualified Doctors</h2>
         <span class="absolute right-[clamp(18px,2vw,34px)] top-[clamp(18px,1.8vw,30px)] grid size-[clamp(38px,3.4vw,56px)] place-items-center rounded-full bg-white text-[#ed8585] max-[680px]:right-3 max-[680px]:top-3 max-[680px]:size-8" aria-hidden="true">
@@ -597,7 +598,7 @@
         <div class="footer-column">
           <h2 class="text-sm font-bold text-[#111a2d] dark:text-[#f5f7fb]">Company</h2>
           <ul class="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
-            <li><a class="footer-link" href="#care-solutions-title">About us</a></li>
+            <li><a class="footer-link" href="pages/About%20us/index.html">About us</a></li>
             <li><a class="footer-link" href="#health-insights-title">Health journal</a></li>
             <li><a class="footer-link" href="#site-footer">Careers</a></li>
           </ul>
