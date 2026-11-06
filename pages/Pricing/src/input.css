@@ -1,0 +1,344 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.theme-dark, .theme-dark *));
+
+.package-filter.is-active {
+  background-color: #55b8ac;
+  color: white;
+  font-weight: 600;
+}
+
+@theme {
+  --animate-filter-marquee: filter-marquee 36s linear infinite alternate;
+
+  @keyframes filter-marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@keyframes patient-photo-swap {
+  0% {
+    opacity: 0;
+    transform: translateX(24px) rotateY(-12deg) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotateY(0) scale(1);
+  }
+}
+
+.patient-story-photo.is-changing {
+  animation: patient-photo-swap 420ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+@keyframes pricing-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.pricing-card {
+  animation: pricing-card-enter 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.pricing-card:nth-child(2) {
+  animation-delay: 140ms;
+}
+
+.pricing-amount {
+  display: inline-block;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.pricing-amount.is-changing {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.billing-toggle[aria-pressed="true"] .billing-toggle-knob {
+  transform: translateX(20px);
+}
+
+.billing-toggle[aria-pressed="true"] + .billing-label-yearly {
+  color: #173b48;
+  font-weight: 600;
+}
+
+.billing-toggle[aria-pressed="true"] ~ .billing-label-monthly {
+  color: #64748b;
+  font-weight: 400;
+}
+
+@keyframes insight-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.insight-card.is-visible {
+  animation: insight-card-enter 650ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.insight-card:nth-child(3n + 2).is-visible {
+  animation-delay: 90ms;
+}
+
+.insight-card:nth-child(3n).is-visible {
+  animation-delay: 180ms;
+}
+
+@keyframes appointment-copy-enter {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes appointment-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes appointment-avatar-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-7px) rotate(3deg);
+  }
+}
+
+@keyframes appointment-ping {
+  75%,
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.appointment-copy {
+  animation: appointment-copy-enter 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.appointment-illustration {
+  animation: appointment-copy-enter 800ms 120ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.appointment-calendar {
+  animation: appointment-float 5s ease-in-out 900ms infinite;
+}
+
+.appointment-avatar-top {
+  animation: appointment-avatar-float 4s ease-in-out 1s infinite;
+}
+
+.appointment-avatar-bottom {
+  animation: appointment-avatar-float 4.8s ease-in-out 1.3s infinite reverse;
+}
+
+.appointment-status-ping {
+  animation: appointment-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.appointment-orb-one {
+  animation: appointment-float 7s ease-in-out infinite;
+}
+
+.appointment-orb-two {
+  animation: appointment-float 8s ease-in-out 500ms infinite reverse;
+}
+
+@keyframes footer-column-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer-column {
+  animation: footer-column-enter 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.footer-column:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.footer-column:nth-child(3) {
+  animation-delay: 160ms;
+}
+
+.footer-column:nth-child(4) {
+  animation-delay: 240ms;
+}
+
+.footer-link {
+  color: inherit;
+  text-decoration: none;
+  text-underline-offset: 4px;
+  transition: color 180ms ease;
+}
+
+.footer-link:hover {
+  color: #319d91;
+  text-decoration: underline;
+}
+
+.footer-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+a.footer-contact:hover {
+  color: #319d91;
+  transform: translateX(3px);
+}
+
+.footer-contact img,
+.footer-social img {
+  opacity: 0.72;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.footer-contact:hover img,
+.footer-social:hover img {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.footer-social {
+  display: inline-grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 9999px;
+  background: #f1f5f4;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.footer-social:hover {
+  transform: translateY(-3px);
+  background: #dff7f2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .patient-story-photo.is-changing {
+    animation: none;
+  }
+
+  .pricing-card {
+    animation: none;
+  }
+
+  .pricing-card,
+  .pricing-amount,
+  .billing-toggle-knob {
+    transition: none;
+  }
+
+  .pricing-card:hover {
+    transform: none;
+  }
+
+  .insight-card.is-visible {
+    animation: none;
+  }
+
+  .insight-card,
+  .insight-card img {
+    transition: none;
+  }
+
+  .insight-card:hover {
+    transform: none;
+  }
+
+  .appointment-copy,
+  .appointment-illustration,
+  .appointment-calendar,
+  .appointment-avatar,
+  .appointment-status-ping,
+  .appointment-orb-one,
+  .appointment-orb-two,
+  .footer-column {
+    animation: none;
+  }
+
+  .footer-link,
+  .footer-contact,
+  .footer-contact img,
+  .footer-social,
+  .footer-social img {
+    transition: none;
+  }
+
+  a.footer-contact:hover,
+  .footer-social:hover {
+    transform: none;
+  }
+}
+
+@utility filter-chip-motion {
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease,
+    background-color 180ms ease;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 6px 14px rgb(20 32 54 / 14%);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.97);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #55b8ac;
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &:hover,
+    &:active {
+      transform: none;
+    }
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

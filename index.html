@@ -6,10 +6,84 @@
   <title>Mecare — Excellent Healthcare</title>
   <link rel="shortcut icon" href="./assets/20.svg" type="image/x-icon">
   <link rel="stylesheet" href="src/output.css">
+  <style>
+    @view-transition {
+      navigation: auto;
+    }
+
+    .page-transition-content {
+      view-transition-name: page-content;
+    }
+
+    ::view-transition-old(page-content) {
+      animation: page-content-out 180ms ease both;
+    }
+
+    ::view-transition-new(page-content) {
+      animation: page-content-in 420ms cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    @keyframes page-content-out {
+      to { opacity: 0; transform: translateX(-12px) scale(.99); }
+    }
+
+    @keyframes page-content-in {
+      from { opacity: 0; transform: translateX(20px) scale(.99); }
+      to { opacity: 1; transform: translateX(0) scale(1); }
+    }
+
+    #main-navigation a {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      transition: color 180ms ease, transform 180ms ease;
+    }
+
+    #main-navigation a::after {
+      position: absolute;
+      right: 12px;
+      bottom: 3px;
+      left: 12px;
+      height: 2px;
+      border-radius: 2px;
+      background: #55b8ac;
+      content: "";
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 220ms ease;
+    }
+
+    #main-navigation a:hover {
+      color: #319d91;
+      transform: translateY(-2px);
+    }
+
+    #main-navigation a:hover::after,
+    #main-navigation a[aria-current="page"]::after {
+      transform: scaleX(1);
+    }
+
+    #main-navigation a[aria-current="page"] {
+      color: #319d91;
+      font-weight: 600;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #main-navigation a,
+      #main-navigation a::after {
+        transition: none;
+      }
+
+      ::view-transition-old(page-content),
+      ::view-transition-new(page-content) {
+        animation: none;
+      }
+    }
+  </style>
 </head>
 <body class="no-scrollbar min-w-[320px] overflow-x-hidden bg-white font-[Arial,Helvetica,sans-serif] text-[#0c1529] antialiased dark:bg-[#101722] dark:text-[#f5f7fb]">
   <header class="fixed inset-x-0 top-0 z-50 mx-auto flex h-[clamp(72px,7vw,108px)] w-full items-center justify-between bg-white px-[4vw] text-[clamp(12px,1vw,18px)] shadow-sm dark:bg-[#101722] max-[680px]:grid max-[680px]:h-auto max-[680px]:min-h-[64px] max-[680px]:grid-cols-[1fr_auto] max-[680px]:gap-2 max-[680px]:py-2">
-    <a class="inline-flex items-center gap-2 text-[clamp(17px,1.5vw,26px)] font-bold text-[#111a2d] no-underline dark:text-[#f5f7fb] max-[420px]:text-base" href="#" aria-label="Mecare home">
+    <a class="inline-flex items-center gap-2 text-[clamp(17px,1.5vw,26px)] font-bold text-[#111a2d] no-underline dark:text-[#f5f7fb] max-[420px]:text-base" href="./index.html" aria-label="Mecare home">
       <span class="grid size-[clamp(28px,2.8vw,44px)] place-items-center rounded bg-[#58bdae] text-white" aria-hidden="true">
         <svg class="size-[70%]" viewBox="0 0 20 20" fill="none">
           <path d="M2 10h3l2-4 3 8 2-5 1 2h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
@@ -24,19 +98,22 @@
       <button class="grid size-[clamp(34px,3vw,48px)] shrink-0 cursor-pointer place-items-center rounded-full bg-[#eef4f3] p-0 text-[clamp(20px,1.8vw,28px)] leading-none text-[#0c1529] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#55b8ac] dark:bg-[#26364a] dark:text-[#ffe08a] max-[680px]:size-[34px]" id="theme-toggle" type="button" aria-label="Включить тёмную тему" aria-pressed="false">☾</button>
     </div>
     <nav class="ml-0 flex items-center gap-[clamp(20px,3vw,48px)] max-[680px]:col-span-full max-[680px]:hidden max-[680px]:flex-col max-[680px]:items-stretch max-[680px]:gap-0 max-[680px]:rounded-lg max-[680px]:bg-white max-[680px]:p-2 max-[680px]:shadow-lg dark:max-[680px]:bg-[#202d3f]" id="main-navigation" aria-label="Main navigation">
-      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="./index.html">Home</a>
-      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="./pages/About us/index.html">Service</a>
-      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="#">Doctors</a>
-      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="#">Pricing</a>
-      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="pages/About%20us/index.html">About us</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="./index.html" aria-current="page">Home</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="./pages/Services/index.html">Services</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="./pages/Doctors/index.html">Doctors</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="./pages/Pricing/index.html">Pricing</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="./pages/About%20us/index.html">About us</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="./pages/Appointment/index.html">Appointment</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="./pages/Contact%20us/index.html">Contact us</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="./pages/Blog/index.html">Blog</a>
     </nav>
     <div class="flex items-center gap-[clamp(12px,2vw,30px)] max-[680px]:hidden">
-      <a class="whitespace-nowrap text-[#0c1529] no-underline dark:text-[#f5f7fb]" href="#">Join Doctor</a>
-      <a class="whitespace-nowrap rounded-[20px] bg-[#55b8ac] px-[clamp(16px,1.8vw,28px)] py-[clamp(9px,.9vw,14px)] text-[clamp(12px,.95vw,17px)] text-white no-underline" href="#">Get Appointment</a>
+      <a class="whitespace-nowrap text-[#0c1529] no-underline dark:text-[#f5f7fb]" href="./pages/Doctors/index.html">Join Doctor</a>
+      <a class="whitespace-nowrap rounded-[20px] bg-[#55b8ac] px-[clamp(16px,1.8vw,28px)] py-[clamp(9px,.9vw,14px)] text-[clamp(12px,.95vw,17px)] text-white no-underline" href="./pages/Appointment/index.html">Get Appointment</a>
     </div>
   </header>
 
-  <main class="pt-[clamp(72px,7vw,108px)] max-[680px]:pt-[64px]">
+  <main class="page-transition-content pt-[clamp(72px,7vw,108px)] max-[680px]:pt-[64px]">
     <section class="relative mx-auto h-[clamp(320px,38vw,560px)] w-[min(92vw,1440px)] overflow-hidden rounded-lg bg-[radial-gradient(ellipse_at_17%_0%,rgba(201,241,220,.5)_0_24%,transparent_24.2%),radial-gradient(ellipse_at_90%_117%,rgba(178,232,210,.55)_0_23%,transparent_23.2%),linear-gradient(118deg,#96dfc7_0%,#72d5c3_55%,#8adcc9_100%)] max-[680px]:h-[clamp(250px,72vw,300px)] max-[420px]:h-[270px]" aria-label="Excellent healthcare">
       <h1 class="absolute left-0 top-[11%] z-[1] m-0 w-full whitespace-nowrap text-center text-[clamp(48px,6.2vw,98px)] font-bold leading-none tracking-[-.02em] text-[rgba(235,255,249,.78)] max-[680px]:top-[8%] max-[680px]:text-[clamp(22px,6.5vw,30px)] max-[680px]:tracking-[-.5px]">Excellent Healthcare</h1>
       <div class="absolute left-[25.5%] top-[42%] z-[2] flex items-center gap-[clamp(7px,.8vw,14px)] whitespace-nowrap text-[clamp(14px,1.1vw,19px)] max-[680px]:left-[5%] max-[680px]:top-[31%] max-[680px]:gap-1 max-[680px]:text-[10px]">
@@ -58,7 +135,7 @@
         No more medications
       </div>
       <p class="absolute bottom-[8%] left-[5%] z-[2] m-0 w-[26%] text-[clamp(12px,1vw,17px)] leading-[1.45] max-[680px]:bottom-[6%] max-[680px]:w-[48%] max-[680px]:text-[10px]">Prioritizing your well-being with top-tier medical expertise and compassionate care tailored to your needs</p>
-      <a class="absolute bottom-[9%] right-[6%] z-[2] whitespace-nowrap rounded-[20px] bg-[#4aafa3] px-[clamp(16px,1.6vw,26px)] py-[clamp(10px,1vw,16px)] text-[clamp(12px,.95vw,16px)] text-white no-underline max-[680px]:right-[4%] max-[680px]:bottom-[6%] max-[680px]:px-2.5 max-[680px]:py-2 max-[680px]:text-[9px]" href="#">Schedule An Appointment</a>
+      <a class="absolute bottom-[9%] right-[6%] z-[2] whitespace-nowrap rounded-[20px] bg-[#4aafa3] px-[clamp(16px,1.6vw,26px)] py-[clamp(10px,1vw,16px)] text-[clamp(12px,.95vw,16px)] text-white no-underline max-[680px]:right-[4%] max-[680px]:bottom-[6%] max-[680px]:px-2.5 max-[680px]:py-2 max-[680px]:text-[9px]" href="./pages/Appointment/index.html">Schedule An Appointment</a>
       <div class="pointer-events-none absolute inset-0 z-[1]" aria-hidden="true">
         <img class="absolute bottom-0 left-1/2 h-[90%] w-auto max-w-none -translate-x-1/2 select-none max-[680px]:left-[76%] max-[680px]:h-[72%]" src="img/1.svg" alt="">
       </div>
@@ -75,7 +152,7 @@
           </svg>
         </span>
         <p class="m-0 w-[min(78%,330px)] text-[clamp(12px,1vw,17px)] leading-[1.5] text-[#64656a] max-[680px]:w-[85%] max-[680px]:text-[11px]">Schedule your appointment with your health consultation with the best doctors in medicare</p>
-        <a class="absolute bottom-[clamp(18px,1.8vw,30px)] left-[clamp(22px,2.7vw,44px)] right-[clamp(18px,2vw,34px)] flex h-[clamp(34px,3vw,48px)] items-center justify-center gap-2 rounded-[20px] bg-[#0d1729] text-[clamp(10px,.85vw,15px)] text-white no-underline max-[680px]:bottom-3 max-[680px]:left-3 max-[680px]:right-3 max-[680px]:h-8 max-[680px]:text-[10px]" href="#">Scheduling an Appointment
+        <a class="absolute bottom-[clamp(18px,1.8vw,30px)] left-[clamp(22px,2.7vw,44px)] right-[clamp(18px,2vw,34px)] flex h-[clamp(34px,3vw,48px)] items-center justify-center gap-2 rounded-[20px] bg-[#0d1729] text-[clamp(10px,.85vw,15px)] text-white no-underline max-[680px]:bottom-3 max-[680px]:left-3 max-[680px]:right-3 max-[680px]:h-8 max-[680px]:text-[10px]" href="./pages/Appointment/index.html">Scheduling an Appointment
           <svg class="size-[clamp(12px,1vw,17px)]" viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </article>
@@ -88,7 +165,7 @@
           </svg>
         </span>
         <p class="m-0 w-[min(78%,330px)] text-[clamp(12px,1vw,17px)] leading-[1.5] text-[#64656a] max-[680px]:w-[85%] max-[680px]:text-[11px]">Schedule your appointment with your health consultation with the best doctors in medicare</p>
-        <a class="absolute bottom-[clamp(18px,1.8vw,30px)] left-[clamp(22px,2.7vw,44px)] right-[clamp(18px,2vw,34px)] flex h-[clamp(34px,3vw,48px)] items-center justify-center gap-2 rounded-[20px] bg-[#0d1729] text-[clamp(10px,.85vw,15px)] text-white no-underline max-[680px]:bottom-3 max-[680px]:left-3 max-[680px]:right-3 max-[680px]:h-8 max-[680px]:text-[10px]" href="#">Scheduling an Appointment
+        <a class="absolute bottom-[clamp(18px,1.8vw,30px)] left-[clamp(22px,2.7vw,44px)] right-[clamp(18px,2vw,34px)] flex h-[clamp(34px,3vw,48px)] items-center justify-center gap-2 rounded-[20px] bg-[#0d1729] text-[clamp(10px,.85vw,15px)] text-white no-underline max-[680px]:bottom-3 max-[680px]:left-3 max-[680px]:right-3 max-[680px]:h-8 max-[680px]:text-[10px]" href="./pages/Appointment/index.html">Scheduling an Appointment
           <svg class="size-[clamp(12px,1vw,17px)]" viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </article>
@@ -102,7 +179,7 @@
           </svg>
         </span>
         <p class="m-0 w-[min(78%,330px)] text-[clamp(12px,1vw,17px)] leading-[1.5] text-[#64656a] max-[680px]:w-[85%] max-[680px]:text-[11px]">Schedule your appointment with your health consultation with the best doctors in medicare</p>
-        <a class="absolute bottom-[clamp(18px,1.8vw,30px)] left-[clamp(22px,2.7vw,44px)] right-[clamp(18px,2vw,34px)] flex h-[clamp(34px,3vw,48px)] items-center justify-center gap-2 rounded-[20px] bg-[#0d1729] text-[clamp(10px,.85vw,15px)] text-white no-underline max-[680px]:bottom-3 max-[680px]:left-3 max-[680px]:right-3 max-[680px]:h-8 max-[680px]:text-[10px]" href="#">Scheduling an Appointment
+        <a class="absolute bottom-[clamp(18px,1.8vw,30px)] left-[clamp(22px,2.7vw,44px)] right-[clamp(18px,2vw,34px)] flex h-[clamp(34px,3vw,48px)] items-center justify-center gap-2 rounded-[20px] bg-[#0d1729] text-[clamp(10px,.85vw,15px)] text-white no-underline max-[680px]:bottom-3 max-[680px]:left-3 max-[680px]:right-3 max-[680px]:h-8 max-[680px]:text-[10px]" href="./pages/Appointment/index.html">Scheduling an Appointment
           <svg class="size-[clamp(12px,1vw,17px)]" viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </article>
@@ -565,7 +642,7 @@
         <p class="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#eafffa] sm:text-sm">Your next step starts here</p>
         <h2 class="text-3xl font-bold leading-[1.08] tracking-[-.025em] sm:text-4xl lg:text-5xl" id="appointment-cta-title">Schedule your appointment with us</h2>
         <p class="mt-4 max-w-lg text-sm leading-6 text-[#124d50] sm:text-base">We're here to help. Whether you have questions about our services or need support choosing a health plan, our care team is ready to guide you.</p>
-        <a class="appointment-cta-button group mt-6 inline-flex items-center gap-2 rounded-full bg-[#102c46] px-6 py-3 text-sm font-semibold text-white no-underline shadow-[0_8px_18px_rgba(16,44,70,.18)] transition-[transform,box-shadow,background-color] duration-200 hover:-translate-y-1 hover:bg-[#173c5d] hover:shadow-[0_14px_26px_rgba(16,44,70,.24)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0" href="#health-packages">
+        <a class="appointment-cta-button group mt-6 inline-flex items-center gap-2 rounded-full bg-[#102c46] px-6 py-3 text-sm font-semibold text-white no-underline shadow-[0_8px_18px_rgba(16,44,70,.18)] transition-[transform,box-shadow,background-color] duration-200 hover:-translate-y-1 hover:bg-[#173c5d] hover:shadow-[0_14px_26px_rgba(16,44,70,.24)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0" href="./pages/Appointment/index.html">
           Get started
           <svg class="size-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 10h11m0 0L11 5.5m4.5 4.5L11 14.5"/></svg>
         </a>
@@ -599,7 +676,7 @@
           <h2 class="text-sm font-bold text-[#111a2d] dark:text-[#f5f7fb]">Company</h2>
           <ul class="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
             <li><a class="footer-link" href="pages/About%20us/index.html">About us</a></li>
-            <li><a class="footer-link" href="#health-insights-title">Health journal</a></li>
+            <li><a class="footer-link" href="pages/Blog/index.html">Health journal</a></li>
             <li><a class="footer-link" href="#site-footer">Careers</a></li>
           </ul>
         </div>
@@ -626,7 +703,7 @@
 
       <div class="flex flex-col items-center gap-5 border-t border-slate-200 py-5 text-center sm:flex-row sm:justify-between sm:text-left dark:border-slate-700">
         <p class="text-xs text-slate-500 dark:text-slate-400">© 2026 Mecare. All rights reserved.</p>
-        <a class="inline-flex items-center gap-2 text-base font-bold text-[#111a2d] no-underline dark:text-[#f5f7fb]" href="#" aria-label="Mecare home">
+        <a class="inline-flex items-center gap-2 text-base font-bold text-[#111a2d] no-underline dark:text-[#f5f7fb]" href="./index.html" aria-label="Mecare home">
           <img class="size-7 rounded-md" src="assets/20.svg" alt="">
           Mecare
         </a>

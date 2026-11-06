@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Meet the Mecare specialists and find the right healthcare professional for your needs.">
+    <title>Our Doctors | Mecare</title>
+    <link rel="shortcut icon" href="../../assets/20.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./src/output.css">
+    <style>
+      body {
+        min-width: 320px;
+        overflow-x: hidden;
+        background: #fff;
+        color: #0c1529;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .doctors-main {
+        padding: clamp(88px, 10vw, 132px) 0 0;
+      }
+
+      .doctors-hero {
+        position: relative;
+        isolation: isolate;
+        width: min(92vw, 1180px);
+        margin: 0 auto;
+        padding: clamp(32px, 5vw, 58px) clamp(18px, 4vw, 48px) 0;
+        overflow: hidden;
+        border-radius: 22px;
+        background: linear-gradient(145deg, #f3fbf9, #e1f6f1);
+        text-align: center;
+      }
+
+      .doctors-hero::before,
+      .doctors-hero::after {
+        position: absolute;
+        z-index: -1;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background: rgb(85 184 172 / 13%);
+        content: "";
+        filter: blur(2px);
+        animation: doctors-orbit 8s ease-in-out infinite alternate;
+      }
+
+      .doctors-hero::before {
+        top: -165px;
+        left: -90px;
+      }
+
+      .doctors-hero::after {
+        right: -120px;
+        bottom: 12px;
+        width: 210px;
+        height: 210px;
+        animation-delay: -3s;
+      }
+
+      .doctors-eyebrow {
+        margin: 0 0 12px;
+        color: #319d91;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        animation: doctors-enter 650ms ease both;
+      }
+
+      .doctors-title {
+        max-width: 930px;
+        margin: 0 auto;
+        color: #101a31;
+        font-size: clamp(34px, 5.5vw, 66px);
+        font-weight: 750;
+        letter-spacing: -.05em;
+        line-height: .99;
+        animation: doctors-enter 700ms 80ms ease both;
+      }
+
+      .doctors-title-line {
+        display: block;
+      }
+
+      .doctors-inline-team {
+        display: inline-flex;
+        align-items: center;
+        vertical-align: .1em;
+        padding: 0 4px;
+      }
+
+      .doctors-inline-team img {
+        width: clamp(24px, 3vw, 38px);
+        height: clamp(24px, 3vw, 38px);
+        margin-left: -7px;
+        border: 2px solid #f3fbf9;
+        border-radius: 50%;
+        background: #dcebe8;
+        object-fit: cover;
+        transition: transform 200ms ease;
+      }
+
+      .doctors-inline-team img:first-child {
+        margin-left: 0;
+      }
+
+      .doctors-inline-team img:hover {
+        position: relative;
+        z-index: 1;
+        transform: translateY(-4px) scale(1.12);
+      }
+
+      .doctors-intro {
+        max-width: 620px;
+        margin: 17px auto 0;
+        color: #596a78;
+        font-size: clamp(13px, 1.35vw, 15px);
+        line-height: 1.7;
+        animation: doctors-enter 700ms 150ms ease both;
+      }
+
+      .doctors-hero-image {
+        position: relative;
+        height: clamp(190px, 27vw, 310px);
+        margin: 28px auto 0;
+        overflow: hidden;
+        border-radius: 16px 16px 0 0;
+        background: #d7edeb;
+        animation: doctors-photo-enter 900ms 180ms cubic-bezier(.2, .7, .2, 1) both;
+      }
+
+      .doctors-hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 22%;
+        transition: transform 800ms cubic-bezier(.2, .7, .2, 1);
+      }
+
+      .doctors-hero-image:hover img {
+        transform: scale(1.025);
+      }
+
+      .doctors-team {
+        width: min(92vw, 1120px);
+        margin: 0 auto;
+        padding: clamp(42px, 6vw, 68px) 0 clamp(56px, 8vw, 88px);
+        scroll-margin-top: 100px;
+      }
+
+      .doctors-section-heading {
+        max-width: 610px;
+        margin: 0 auto 28px;
+        text-align: center;
+      }
+
+      .doctors-section-heading > p {
+        margin: 0 0 10px;
+        color: #319d91;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+      }
+
+      .doctors-section-heading h2 {
+        margin: 0;
+        color: #101a31;
+        font-size: clamp(28px, 4vw, 40px);
+        font-weight: 750;
+        letter-spacing: -.04em;
+        line-height: 1.1;
+      }
+
+      .doctors-section-heading > span {
+        display: block;
+        margin-top: 11px;
+        color: #64727c;
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
+      .doctor-carousel {
+        --doctor-gap: clamp(10px, 1.3vw, 16px);
+      }
+
+      .doctor-viewport {
+        overflow: hidden;
+        border-radius: 14px;
+        touch-action: pan-y;
+      }
+
+      .doctor-track {
+        display: flex;
+        gap: var(--doctor-gap);
+        transition: transform 550ms cubic-bezier(.22, .72, .22, 1);
+        will-change: transform;
+      }
+
+      .doctor-card {
+        position: relative;
+        flex: 0 0 calc((100% - 4 * var(--doctor-gap)) / 5);
+        aspect-ratio: .79;
+        overflow: hidden;
+        border-radius: 12px;
+        background: #e8efef;
+        animation: doctors-card-enter 650ms both;
+      }
+
+      .doctor-card:nth-child(2) { animation-delay: 70ms; }
+      .doctor-card:nth-child(3) { animation-delay: 140ms; }
+      .doctor-card:nth-child(4) { animation-delay: 210ms; }
+      .doctor-card:nth-child(5) { animation-delay: 280ms; }
+
+      .doctor-card::after {
+        position: absolute;
+        inset: 30% 0 0;
+        background: linear-gradient(180deg, transparent, rgb(9 27 38 / 8%) 38%, rgb(17 83 77 / 90%));
+        content: "";
+        transition: opacity 240ms ease;
+      }
+
+      .doctor-card:nth-child(4n + 2)::after {
+        background: linear-gradient(180deg, transparent, rgb(99 30 47 / 6%) 38%, rgb(194 111 111 / 92%));
+      }
+
+      .doctor-card:nth-child(4n + 3)::after {
+        background: linear-gradient(180deg, transparent, rgb(78 71 16 / 8%) 38%, rgb(183 165 82 / 92%));
+      }
+
+      .doctor-card:nth-child(4n)::after {
+        background: linear-gradient(180deg, transparent, rgb(16 54 84 / 7%) 38%, rgb(79 163 197 / 92%));
+      }
+
+      .doctor-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        transition: transform 650ms cubic-bezier(.2, .7, .2, 1);
+      }
+
+      .doctor-card:hover img {
+        transform: scale(1.055);
+      }
+
+      .doctor-card-copy {
+        position: absolute;
+        z-index: 1;
+        right: 12px;
+        bottom: 13px;
+        left: 12px;
+        color: #fff;
+        text-align: left;
+        transform: translateY(3px);
+        transition: transform 220ms ease;
+      }
+
+      .doctor-card:hover .doctor-card-copy {
+        transform: translateY(0);
+      }
+
+      .doctor-card-copy h3 {
+        margin: 0;
+        font-size: clamp(13px, 1.15vw, 16px);
+        font-weight: 700;
+        line-height: 1.2;
+        text-shadow: 0 1px 5px rgb(0 0 0 / 18%);
+      }
+
+      .doctor-card-copy p {
+        margin: 5px 0 0;
+        color: rgb(255 255 255 / 90%);
+        font-size: 10px;
+        line-height: 1.3;
+      }
+
+      .doctor-carousel-controls {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 18px;
+        margin-top: 17px;
+      }
+
+      .doctor-dots {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .doctor-dot {
+        width: 7px;
+        height: 7px;
+        padding: 0;
+        border: 0;
+        border-radius: 999px;
+        background: #c9e8e3;
+        cursor: pointer;
+        transition: width 220ms ease, background 220ms ease, transform 180ms ease;
+      }
+
+      .doctor-dot[aria-current="true"] {
+        width: 22px;
+        background: #55b8ac;
+      }
+
+      .doctor-dot:hover {
+        transform: scale(1.2);
+      }
+
+      .doctor-arrows {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .doctor-arrow {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border: 1px solid #e8f0ef;
+        border-radius: 11px;
+        background: #fff;
+        color: #25364a;
+        cursor: pointer;
+        font-size: 17px;
+        transition: transform 180ms ease, border-color 180ms ease, color 180ms ease, background 180ms ease;
+      }
+
+      .doctor-arrow:hover:not(:disabled) {
+        transform: translateY(-2px);
+        border-color: #55b8ac;
+        background: #55b8ac;
+        color: #fff;
+      }
+
+      .doctor-arrow:active {
+        transform: scale(.92);
+      }
+
+      .doctor-track.is-repositioning {
+        transition: none;
+      }
+
+      .doctors-main a:focus-visible,
+      .doctors-main button:focus-visible {
+        outline: 3px solid #319d91;
+        outline-offset: 3px;
+      }
+
+      body.theme-dark {
+        background: #101722;
+        color: #f5f7fb;
+      }
+
+      .theme-dark .doctors-hero {
+        background: linear-gradient(145deg, #192d36, #1d3740);
+      }
+
+      .theme-dark .doctors-title,
+      .theme-dark .doctors-section-heading h2 {
+        color: #f5f7fb;
+      }
+
+      .theme-dark .doctors-intro,
+      .theme-dark .doctors-section-heading > span {
+        color: #b7c3ce;
+      }
+
+      .theme-dark .doctors-inline-team img {
+        border-color: #192d36;
+      }
+
+      .theme-dark .doctor-arrow {
+        border-color: #344154;
+        background: #202d3f;
+        color: #f5f7fb;
+      }
+
+      .theme-dark .doctor-arrow:hover:not(:disabled) {
+        border-color: #55b8ac;
+        background: #55b8ac;
+      }
+
+      @keyframes doctors-enter {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes doctors-photo-enter {
+        from { opacity: 0; transform: translateY(18px) scale(.985); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
+      @keyframes doctors-card-enter {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes doctors-orbit {
+        to { transform: translate(18px, 14px) scale(1.08); }
+      }
+
+      @media (max-width: 850px) {
+        .doctor-card {
+          flex-basis: calc((100% - 2 * var(--doctor-gap)) / 3);
+        }
+      }
+
+      @media (max-width: 560px) {
+        .doctors-main { padding-top: 82px; }
+        .doctors-hero { width: 94vw; border-radius: 17px; }
+        .doctors-title { font-size: clamp(32px, 9vw, 46px); }
+        .doctors-title-line { display: inline; }
+        .doctors-hero-image { height: 210px; margin-top: 23px; }
+        .doctors-team { padding-top: 40px; }
+        .doctor-card { flex-basis: calc((100% - var(--doctor-gap)) / 2); }
+        .doctor-card-copy { right: 9px; bottom: 10px; left: 9px; }
+        .doctor-carousel-controls { margin-top: 13px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          scroll-behavior: auto !important;
+          animation-duration: .01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: .01ms !important;
+        }
+      }
+
+      @view-transition {
+        navigation: auto;
+      }
+
+      .page-transition-content {
+        view-transition-name: page-content;
+      }
+
+      ::view-transition-old(page-content) {
+        animation: page-content-out 180ms ease both;
+      }
+
+      ::view-transition-new(page-content) {
+        animation: page-content-in 420ms cubic-bezier(.2, .7, .2, 1) both;
+      }
+
+      @keyframes page-content-out {
+        to { opacity: 0; transform: translateX(-12px) scale(.99); }
+      }
+
+      @keyframes page-content-in {
+        from { opacity: 0; transform: translateX(20px) scale(.99); }
+        to { opacity: 1; transform: translateX(0) scale(1); }
+      }
+
+      #main-navigation a {
+        display: inline-flex;
+        align-items: center;
+        position: relative;
+        transition: color 180ms ease, transform 180ms ease;
+      }
+
+      #main-navigation a::after {
+        position: absolute;
+        right: 12px;
+        bottom: 3px;
+        left: 12px;
+        height: 2px;
+        border-radius: 2px;
+        background: #55b8ac;
+        content: "";
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 220ms ease;
+      }
+
+      #main-navigation a:hover {
+        color: #319d91;
+        transform: translateY(-2px);
+      }
+
+      #main-navigation a:hover::after,
+      #main-navigation a[aria-current="page"]::after {
+        transform: scaleX(1);
+      }
+
+      #main-navigation a[aria-current="page"] {
+        color: #319d91;
+        font-weight: 600;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #main-navigation a,
+        #main-navigation a::after,
+        ::view-transition-old(page-content),
+        ::view-transition-new(page-content) {
+          animation: none;
+          transition: none;
+        }
+      }
+    </style>
+</head>
+<body class="min-w-[320px] overflow-x-hidden bg-white font-[Arial,Helvetica,sans-serif] text-[#0c1529] antialiased dark:bg-[#101722] dark:text-[#f5f7fb]">
+    <header class="fixed inset-x-0 top-0 z-50 mx-auto flex h-[clamp(72px,7vw,108px)] w-full items-center justify-between bg-white px-[4vw] text-[clamp(12px,1vw,18px)] shadow-sm dark:bg-[#101722] max-[680px]:grid max-[680px]:h-auto max-[680px]:min-h-[64px] max-[680px]:grid-cols-[1fr_auto] max-[680px]:gap-2 max-[680px]:py-2">
+    <a class="inline-flex items-center gap-2 text-[clamp(17px,1.5vw,26px)] font-bold text-[#111a2d] no-underline dark:text-[#f5f7fb] max-[420px]:text-base" href="../../index.html" aria-label="Mecare home">
+      <span class="grid size-[clamp(28px,2.8vw,44px)] place-items-center rounded bg-[#58bdae] text-white" aria-hidden="true">
+        <svg class="size-[70%]" viewBox="0 0 20 20" fill="none">
+          <path d="M2 10h3l2-4 3 8 2-5 1 2h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      Mecare
+    </a>
+    <div class="contents max-[680px]:flex max-[680px]:items-center max-[680px]:gap-2">
+      <button class="hidden size-9 cursor-pointer place-items-center rounded-md border border-[#e5e7eb] bg-white text-xl text-[#0c1529] max-[680px]:grid dark:border-[#344154] dark:bg-[#202d3f] dark:text-[#f5f7fb]" id="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-navigation">
+        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <button class="grid size-[clamp(34px,3vw,48px)] shrink-0 cursor-pointer place-items-center rounded-full bg-[#eef4f3] p-0 text-[clamp(20px,1.8vw,28px)] leading-none text-[#0c1529] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#55b8ac] dark:bg-[#26364a] dark:text-[#ffe08a] max-[680px]:size-[34px]" id="theme-toggle" type="button" aria-label="Включить тёмную тему" aria-pressed="false">☾</button>
+    </div>
+    <nav class="ml-0 flex items-center gap-[clamp(20px,3vw,48px)] max-[680px]:col-span-full max-[680px]:hidden max-[680px]:flex-col max-[680px]:items-stretch max-[680px]:gap-0 max-[680px]:rounded-lg max-[680px]:bg-white max-[680px]:p-2 max-[680px]:shadow-lg dark:max-[680px]:bg-[#202d3f]" id="main-navigation" aria-label="Main navigation">
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="../../index.html">Home</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="../Services/index.html">Services</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="./index.html" aria-current="page">Doctors</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="../Pricing/index.html">Pricing</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="../About%20us/index.html">About us</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="../Appointment/index.html">Appointment</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="../Contact%20us/index.html">Contact us</a>
+      <a class="whitespace-nowrap px-3 py-2 text-[#0c1529] no-underline dark:text-[#f5f7fb] max-[680px]:rounded-md max-[680px]:hover:bg-[#f1f5f9]" href="../Blog/index.html">Blog</a>
+    </nav>
+    <div class="flex items-center gap-[clamp(12px,2vw,30px)] max-[680px]:hidden">
+      <a class="whitespace-nowrap text-[#0c1529] no-underline dark:text-[#f5f7fb]" href="mailto:hello@mecare.example">Join Doctor</a>
+      <a class="whitespace-nowrap rounded-[20px] bg-[#55b8ac] px-[clamp(16px,1.8vw,28px)] py-[clamp(9px,.9vw,14px)] text-[clamp(12px,.95vw,17px)] text-white no-underline" href="#team">Meet Our Doctors</a>
+    </div>
+  </header>
+
+  <main class="page-transition-content doctors-main">
+    <section class="doctors-hero" aria-labelledby="doctors-title">
+      <p class="doctors-eyebrow">People who care, experts who listen</p>
+      <h1 class="doctors-title" id="doctors-title">
+        <span class="doctors-title-line">Designed for
+          <span class="doctors-inline-team" aria-label="our doctors">
+            <img src="../../assets/49.svg" alt="">
+            <img src="../../assets/50.svg" alt="">
+            <img src="../../assets/51.svg" alt="">
+            <img src="../../assets/52.svg" alt="">
+          </span>
+          specialists
+        </span>
+        <span class="doctors-title-line">leading healthcare excellence.</span>
+      </h1>
+      <p class="doctors-intro">Meet a team of dedicated professionals bringing experience, compassion, and thoughtful care to every visit.</p>
+      <div class="doctors-hero-image">
+        <img src="../../assets/29.svg" alt="The Mecare team of healthcare specialists">
+      </div>
+    </section>
+
+    <section class="doctors-team" id="team" aria-labelledby="team-title">
+      <div class="doctors-section-heading">
+        <p>Meet the people behind your care</p>
+        <h2 id="team-title">Meet Our Specialists</h2>
+        <span>Skilled, supportive doctors ready to help you feel your best.</span>
+      </div>
+      <div class="doctor-carousel" aria-label="Our doctors">
+        <div class="doctor-viewport" id="doctor-viewport">
+          <div class="doctor-track" id="doctor-track">
+            <article class="doctor-card">
+              <img src="../../assets/49.svg" alt="Dr. Hassan Qureshi">
+              <div class="doctor-card-copy"><h3>Dr. Hassan Qureshi</h3><p>Cardiologist</p></div>
+            </article>
+            <article class="doctor-card">
+              <img src="../../assets/50.svg" alt="Dr. Aisha Rahman">
+              <div class="doctor-card-copy"><h3>Dr. Aisha Rahman</h3><p>Dermatologist</p></div>
+            </article>
+            <article class="doctor-card">
+              <img src="../../assets/51.svg" alt="Dr. Omar Farooq">
+              <div class="doctor-card-copy"><h3>Dr. Omar Farooq</h3><p>Family physician</p></div>
+            </article>
+            <article class="doctor-card">
+              <img src="../../assets/52.svg" alt="Dr. James Wilson">
+              <div class="doctor-card-copy"><h3>Dr. James Wilson</h3><p>Neurologist</p></div>
+            </article>
+            <article class="doctor-card">
+              <img src="../../assets/53.svg" alt="Dr. Maya Patel">
+              <div class="doctor-card-copy"><h3>Dr. Maya Patel</h3><p>Pediatrician</p></div>
+            </article>
+            <article class="doctor-card">
+              <img src="../../assets/фото.jpg" alt="Dr. Daniel Brooks">
+              <div class="doctor-card-copy"><h3>Dr. Daniel Brooks</h3><p>Primary care</p></div>
+            </article>
+            <article class="doctor-card">
+              <img src="../../assets/фото2.jpg" alt="Dr. Ethan Cole">
+              <div class="doctor-card-copy"><h3>Dr. Ethan Cole</h3><p>Internal medicine</p></div>
+            </article>
+            <article class="doctor-card">
+              <img src="../../assets/фото3.jpg" alt="Dr. Andrew Miller">
+              <div class="doctor-card-copy"><h3>Dr. Andrew Miller</h3><p>Orthopedist</p></div>
+            </article>
+            <article class="doctor-card">
+              <img src="../../assets/фото5.jpg" alt="Dr. Noah Bennett">
+              <div class="doctor-card-copy"><h3>Dr. Noah Bennett</h3><p>Family physician</p></div>
+            </article>
+          </div>
+        </div>
+        <div class="doctor-carousel-controls">
+          <span aria-hidden="true"></span>
+          <div class="doctor-dots" id="doctor-dots" aria-label="Choose doctors page"></div>
+          <div class="doctor-arrows">
+            <button class="doctor-arrow" id="doctor-prev" type="button" aria-label="Previous doctors">←</button>
+            <button class="doctor-arrow" id="doctor-next" type="button" aria-label="Next doctors">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="appointment-cta relative mx-auto my-12 grid w-[min(92vw,1200px)] overflow-hidden rounded-[28px] bg-[#61cdbb] px-6 py-10 text-[#082c35] shadow-[0_24px_70px_rgba(54,174,157,.2)] sm:my-16 sm:grid-cols-2 sm:items-center sm:px-10 sm:py-12 lg:my-20 lg:min-h-[340px] lg:px-14" aria-labelledby="appointment-cta-title">
+      <div class="appointment-orb appointment-orb-one pointer-events-none absolute -left-12 -top-14 size-36 rounded-full bg-white/20" aria-hidden="true"></div>
+      <div class="appointment-orb appointment-orb-two pointer-events-none absolute -bottom-16 left-[42%] size-48 rounded-full border-[18px] border-white/10" aria-hidden="true"></div>
+      <div class="appointment-copy relative z-10 max-w-xl">
+        <p class="mb-3 text-xs font-bold uppercase tracking-[.18em] text-[#eafffa] sm:text-sm">Your next step starts here</p>
+        <h2 class="text-3xl font-bold leading-[1.08] tracking-[-.025em] sm:text-4xl lg:text-5xl" id="appointment-cta-title">Schedule your appointment with us</h2>
+        <p class="mt-4 max-w-lg text-sm leading-6 text-[#124d50] sm:text-base">We're here to help. Whether you have questions about our services or need support choosing a health plan, our care team is ready to guide you.</p>
+        <a class="appointment-cta-button group mt-6 inline-flex items-center gap-2 rounded-full bg-[#102c46] px-6 py-3 text-sm font-semibold text-white no-underline shadow-[0_8px_18px_rgba(16,44,70,.18)] transition-[transform,box-shadow,background-color] duration-200 hover:-translate-y-1 hover:bg-[#173c5d] hover:shadow-[0_14px_26px_rgba(16,44,70,.24)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0" href="../Appointment/index.html">
+          Get started
+          <svg class="size-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 10h11m0 0L11 5.5m4.5 4.5L11 14.5"/></svg>
+        </a>
+      </div>
+
+      <div class="appointment-illustration relative mx-auto mt-8 flex min-h-52 w-full max-w-[520px] items-center justify-center sm:mt-0 sm:min-h-64 lg:min-h-[280px]" aria-label="Illustration of an online appointment calendar">
+        <div class="appointment-glow pointer-events-none absolute right-[12%] top-[14%] size-44 rounded-full bg-white/20 blur-2xl" aria-hidden="true"></div>
+        <img class="appointment-calendar relative z-10 w-full max-w-[490px] drop-shadow-[0_20px_28px_rgba(19,81,83,.15)]" src="../../assets/17.svg" alt="Online calendar showing available healthcare appointments">
+        <img class="appointment-avatar appointment-avatar-top absolute left-[11%] top-[4%] z-20 size-12 rounded-full border-4 border-white object-cover shadow-lg sm:left-[7%] sm:size-14" src="../../assets/18.svg" alt="">
+        <img class="appointment-avatar appointment-avatar-bottom absolute bottom-[1%] right-[8%] z-20 size-12 rounded-full border-4 border-white object-cover shadow-lg sm:right-[5%] sm:size-14" src="../../assets/19.svg" alt="">
+        <span class="appointment-status absolute right-[3%] top-[17%] z-20 inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/95 px-3 py-2 text-[10px] font-semibold text-[#176f68] shadow-lg sm:right-[1%] sm:text-xs">
+          <span class="relative flex size-2"><span class="appointment-status-ping absolute inline-flex size-full rounded-full bg-[#55b8ac] opacity-70"></span><span class="relative inline-flex size-2 rounded-full bg-[#329c8e]"></span></span>
+          Appointments available
+        </span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer relative mt-16 bg-white dark:bg-[#101722]" id="site-footer">
+    <div class="mx-auto w-[min(92vw,1200px)]">
+      <div class="grid gap-8 py-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 lg:py-14">
+        <div class="footer-column">
+          <h2 class="text-sm font-bold text-[#111a2d] dark:text-[#f5f7fb]">Solutions</h2>
+          <ul class="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <li><a class="footer-link" href="../../index.html#health-packages">Health check-up plans</a></li>
+            <li><a class="footer-link" href="../Services/index.html#care-title">Healthcare solutions</a></li>
+            <li><a class="footer-link" href="../../index.html#health-insights-title">Health insights</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h2 class="text-sm font-bold text-[#111a2d] dark:text-[#f5f7fb]">Company</h2>
+          <ul class="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <li><a class="footer-link" href="../About%20us/index.html">About us</a></li>
+            <li><a class="footer-link" href="../../index.html#health-insights-title">Health journal</a></li>
+            <li><a class="footer-link" href="#site-footer">Careers</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h2 class="text-sm font-bold text-[#111a2d] dark:text-[#f5f7fb]">Get in touch</h2>
+          <address class="mt-4 space-y-3 text-sm not-italic text-slate-600 dark:text-slate-300">
+            <a class="footer-contact" href="tel:+18005550100"><img class="size-4" src="../../assets/21.svg" alt=""><span>(800) 555-0100</span></a>
+            <a class="footer-contact" href="mailto:hello@mecare.example"><img class="size-4" src="../../assets/22.svg" alt=""><span>hello@mecare.example</span></a>
+            <p class="footer-contact items-start"><img class="mt-0.5 size-4" src="../../assets/23.svg" alt=""><span>Online care and support<br>wherever you are</span></p>
+          </address>
+        </div>
+
+        <div class="footer-column">
+          <h2 class="text-sm font-bold text-[#111a2d] dark:text-[#f5f7fb]">Follow us on</h2>
+          <div class="mt-4 flex items-center gap-4" aria-label="Social networks">
+            <span class="footer-social" aria-label="Facebook"><img class="size-4" src="../../assets/24.svg" alt=""></span>
+            <span class="footer-social" aria-label="LinkedIn"><img class="size-4" src="../../assets/25.svg" alt=""></span>
+            <span class="footer-social" aria-label="Instagram"><img class="size-4" src="../../assets/26.svg" alt=""></span>
+            <span class="footer-social" aria-label="YouTube"><img class="size-4" src="../../assets/27.svg" alt=""></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-5 border-t border-slate-200 py-5 text-center sm:flex-row sm:justify-between sm:text-left dark:border-slate-700">
+        <p class="text-xs text-slate-500 dark:text-slate-400">© 2026 Mecare. All rights reserved.</p>
+        <a class="inline-flex items-center gap-2 text-base font-bold text-[#111a2d] no-underline dark:text-[#f5f7fb]" href="../../index.html" aria-label="Mecare home">
+          <img class="size-7 rounded-md" src="../../assets/20.svg" alt="">
+          Mecare
+        </a>
+        <div class="flex items-center gap-5 text-xs text-slate-500 dark:text-slate-400">
+          <a class="footer-link" href="#site-footer">Terms of service</a>
+          <a class="footer-link" href="#site-footer">Privacy policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const menuToggle = document.querySelector("#menu-toggle");
+    const mainNavigation = document.querySelector("#main-navigation");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = menuToggle.getAttribute("aria-expanded") !== "true";
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
+      mainNavigation.classList.toggle("max-[680px]:hidden", !isOpen);
+      mainNavigation.classList.toggle("max-[680px]:flex", isOpen);
+    });
+
+    mainNavigation.addEventListener("click", (event) => {
+      if (event.target.closest("a") && window.matchMedia("(max-width: 680px)").matches) {
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Открыть меню");
+        mainNavigation.classList.add("max-[680px]:hidden");
+        mainNavigation.classList.remove("max-[680px]:flex");
+      }
+    });
+
+    document.querySelector("#theme-toggle").addEventListener("click", (event) => {
+      const isDark = document.body.classList.toggle("theme-dark");
+      event.currentTarget.textContent = isDark ? "☀" : "☾";
+      event.currentTarget.setAttribute("aria-pressed", String(isDark));
+      event.currentTarget.setAttribute("aria-label", isDark ? "Включить светлую тему" : "Включить тёмную тему");
+    });
+
+    const doctorTrack = document.querySelector("#doctor-track");
+    const doctorViewport = document.querySelector("#doctor-viewport");
+    const doctorDots = document.querySelector("#doctor-dots");
+    const doctorPrevious = document.querySelector("#doctor-prev");
+    const doctorNext = document.querySelector("#doctor-next");
+    const doctors = [...doctorTrack.children];
+    let doctorPage = 0;
+    let visibleDoctors = 5;
+    let doctorPosition = doctors.length;
+    let doctorAnimating = false;
+    let doctorTransitionFallback = 0;
+    let doctorHovered = false;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    function doctorStep() {
+      const card = doctorTrack.firstElementChild;
+      const gap = parseFloat(window.getComputedStyle(doctorTrack).columnGap);
+      return card.getBoundingClientRect().width + gap;
+    }
+
+    function doctorLogicalPosition() {
+      return ((doctorPosition - doctors.length) % doctors.length + doctors.length) % doctors.length;
+    }
+
+    function updateDoctorDots() {
+      const pageCount = Math.ceil(doctors.length / visibleDoctors);
+      const activePage = Math.floor(doctorLogicalPosition() / visibleDoctors);
+      doctorPage = activePage;
+      doctorDots.replaceChildren();
+
+      for (let page = 0; page < pageCount; page += 1) {
+        const dot = document.createElement("button");
+        dot.className = "doctor-dot";
+        dot.type = "button";
+        dot.setAttribute("aria-label", `Show doctors page ${page + 1}`);
+        dot.setAttribute("aria-current", String(page === activePage));
+        dot.addEventListener("click", () => {
+          const currentPosition = doctorLogicalPosition();
+          const targetPosition = page * visibleDoctors;
+          const forward = (targetPosition - currentPosition + doctors.length) % doctors.length;
+          const backward = forward - doctors.length;
+          moveDoctors(Math.abs(forward) <= Math.abs(backward) ? forward : backward);
+        });
+        doctorDots.append(dot);
+      }
+    }
+
+    function positionDoctorTrack() {
+      doctorTrack.style.transform = `translateX(-${doctorPosition * doctorStep()}px)`;
+    }
+
+    function moveDoctors(direction) {
+      if (doctorAnimating || direction === 0) {
+        return;
+      }
+
+      doctorAnimating = true;
+      doctorTrack.classList.remove("is-repositioning");
+      doctorPosition += direction;
+      positionDoctorTrack();
+      updateDoctorDots();
+
+      window.clearTimeout(doctorTransitionFallback);
+      const duration = window.getComputedStyle(doctorTrack).transitionDuration.split(",")[0].trim();
+      const durationMs = duration.endsWith("ms")
+        ? parseFloat(duration)
+        : parseFloat(duration) * 1000;
+      doctorTransitionFallback = window.setTimeout(finishDoctorMove, durationMs + 80);
+    }
+
+    function measureDoctorCarousel() {
+      const width = window.innerWidth;
+      visibleDoctors = width <= 560 ? 2 : width <= 850 ? 3 : 5;
+      const before = doctors.map((doctor) => {
+        const clone = doctor.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        clone.inert = true;
+        clone.style.animation = "none";
+        return clone;
+      });
+      const after = before.map((doctor) => doctor.cloneNode(true));
+      doctorTrack.replaceChildren(...before, ...doctors, ...after);
+      doctorPosition = doctors.length;
+      doctorAnimating = false;
+      doctorTrack.classList.add("is-repositioning");
+      positionDoctorTrack();
+      updateDoctorDots();
+      requestAnimationFrame(() => doctorTrack.classList.remove("is-repositioning"));
+    }
+
+    function finishDoctorMove() {
+      if (!doctorAnimating) {
+        return;
+      }
+
+      window.clearTimeout(doctorTransitionFallback);
+      if (doctorPosition >= doctors.length * 2) {
+        doctorPosition -= doctors.length;
+      } else if (doctorPosition < doctors.length) {
+        doctorPosition += doctors.length;
+      }
+
+      doctorTrack.classList.add("is-repositioning");
+      positionDoctorTrack();
+      updateDoctorDots();
+      requestAnimationFrame(() => {
+        doctorTrack.classList.remove("is-repositioning");
+        doctorAnimating = false;
+      });
+    }
+
+    doctorTrack.addEventListener("transitionend", (event) => {
+      if (event.target === doctorTrack && event.propertyName === "transform") {
+        finishDoctorMove();
+      }
+    });
+
+    doctorPrevious.addEventListener("click", () => moveDoctors(-1));
+    doctorNext.addEventListener("click", () => moveDoctors(1));
+
+    doctorViewport.addEventListener("pointerenter", () => {
+      doctorHovered = true;
+    });
+    doctorViewport.addEventListener("pointerleave", () => {
+      doctorHovered = false;
+    });
+
+    let doctorFocused = false;
+    doctorViewport.addEventListener("focusin", () => {
+      doctorFocused = true;
+    });
+    doctorViewport.addEventListener("focusout", (event) => {
+      if (!doctorViewport.contains(event.relatedTarget)) {
+        doctorFocused = false;
+      }
+    });
+
+    if (!reducedMotion.matches) {
+      window.setInterval(() => {
+        if (!document.hidden && !doctorHovered && !doctorFocused) {
+          moveDoctors(1);
+        }
+      }, 4200);
+    }
+
+    let resizeFrame = 0;
+    window.addEventListener("resize", () => {
+      window.cancelAnimationFrame(resizeFrame);
+      resizeFrame = window.requestAnimationFrame(measureDoctorCarousel);
+    });
+
+    measureDoctorCarousel();
+  </script>
+</body>
+</html>

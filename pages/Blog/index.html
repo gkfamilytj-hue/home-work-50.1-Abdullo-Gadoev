@@ -1,0 +1,1208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Read the latest healthcare news, practical wellness advice, and expert perspectives from Mecare.">
+  <title>The Mecare Blog | Health News &amp; Insights</title>
+  <link rel="shortcut icon" href="../../assets/20.svg" type="image/x-icon">
+  <link rel="stylesheet" href="./src/output.css">
+  <style>
+    @view-transition {
+      navigation: auto;
+    }
+
+    .page-transition-content {
+      view-transition-name: page-content;
+    }
+
+    ::view-transition-old(page-content) {
+      animation: page-content-out 180ms ease both;
+    }
+
+    ::view-transition-new(page-content) {
+      animation: page-content-in 420ms cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    @keyframes page-content-out {
+      to { opacity: 0; transform: translateX(-12px) scale(.99); }
+    }
+
+    @keyframes page-content-in {
+      from { opacity: 0; transform: translateX(20px) scale(.99); }
+      to { opacity: 1; transform: translateX(0) scale(1); }
+    }
+
+    body {
+      min-width: 320px;
+      overflow-x: hidden;
+      background: #fff;
+      color: #0c1529;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .site-header {
+      position: fixed;
+      z-index: 20;
+      inset: 0 0 auto;
+      display: flex;
+      min-height: 76px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px clamp(18px, 4vw, 64px);
+      border-bottom: 1px solid rgb(226 236 234 / 70%);
+      background: rgb(255 255 255 / 92%);
+      box-shadow: 0 4px 20px rgb(20 50 55 / 4%);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 10px;
+      color: #111a2d;
+      font-size: 21px;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border-radius: 10px;
+      background: #55b8ac;
+      color: #fff;
+    }
+
+    .brand-mark svg {
+      width: 23px;
+      height: 23px;
+    }
+
+    #main-navigation {
+      display: flex;
+      align-items: center;
+      gap: clamp(9px, 1.45vw, 20px);
+    }
+
+    #main-navigation a {
+      position: relative;
+      padding: 10px 0;
+      color: #263447;
+      font-size: 11px;
+      text-decoration: none;
+      transition: color 180ms ease, transform 180ms ease;
+    }
+
+    #main-navigation a::after {
+      position: absolute;
+      right: 0;
+      bottom: 3px;
+      left: 0;
+      height: 2px;
+      border-radius: 2px;
+      background: #55b8ac;
+      content: "";
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 220ms ease;
+    }
+
+    #main-navigation a:hover,
+    #main-navigation a[aria-current="page"] {
+      color: #278f84;
+    }
+
+    #main-navigation a:hover::after,
+    #main-navigation a[aria-current="page"]::after {
+      transform: scaleX(1);
+    }
+
+    .header-actions {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .theme-toggle,
+    .menu-toggle {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 1px solid #e4edeb;
+      border-radius: 50%;
+      background: #f1f7f5;
+      color: #233446;
+      cursor: pointer;
+      font-size: 19px;
+      transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .theme-toggle:hover,
+    .menu-toggle:hover {
+      transform: translateY(-2px);
+      background: #e4f6f1;
+      box-shadow: 0 5px 14px rgb(44 135 124 / 12%);
+    }
+
+    .menu-toggle {
+      display: none;
+      border-radius: 10px;
+    }
+
+    .blog-main {
+      padding: 116px 20px 72px;
+    }
+
+    .blog-container {
+      width: min(100%, 1120px);
+      margin: 0 auto;
+    }
+
+    .blog-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 26px;
+      animation: blog-enter 650ms cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    .blog-kicker {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 9px;
+      color: #319d91;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    .blog-kicker::before {
+      width: 18px;
+      height: 2px;
+      border-radius: 2px;
+      background: #55b8ac;
+      content: "";
+    }
+
+    .blog-title {
+      margin: 0;
+      color: #101a31;
+      font-size: clamp(34px, 4.4vw, 52px);
+      font-weight: 750;
+      letter-spacing: -.05em;
+      line-height: 1.04;
+    }
+
+    .blog-subtitle {
+      max-width: 560px;
+      margin: 10px 0 0;
+      color: #64727c;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .subscribe-form {
+      display: flex;
+      width: min(100%, 310px);
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 6px 5px 12px;
+      border: 1px solid #e6eeed;
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: 0 7px 22px rgb(25 66 66 / 5%);
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .subscribe-form:focus-within {
+      border-color: #9bd5ca;
+      box-shadow: 0 0 0 3px rgb(85 184 172 / 12%);
+    }
+
+    .subscribe-icon {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      color: #71818a;
+    }
+
+    .subscribe-icon svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .subscribe-form input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #17243b;
+      font: inherit;
+      font-size: 10px;
+    }
+
+    .subscribe-form input::placeholder {
+      color: #8d999e;
+    }
+
+    .subscribe-form button {
+      min-height: 31px;
+      flex: 0 0 auto;
+      padding: 0 14px;
+      border: 0;
+      border-radius: 999px;
+      background: #55b8ac;
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+      font-size: 10px;
+      font-weight: 700;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .subscribe-form button:hover {
+      transform: translateY(-1px);
+      background: #319d91;
+    }
+
+    .subscribe-status {
+      min-height: 0;
+      margin: 6px 5px 0;
+      color: #287c70;
+      font-size: 10px;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(270px, .75fr);
+      gap: clamp(22px, 4vw, 48px);
+      animation: blog-enter 750ms 90ms cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    .featured-article {
+      min-width: 0;
+    }
+
+    .featured-image-link,
+    .article-image-link {
+      display: block;
+      overflow: hidden;
+      background: #e9f4f1;
+    }
+
+    .featured-image-link {
+      position: relative;
+      height: clamp(210px, 25vw, 310px);
+      border-radius: 16px;
+    }
+
+    .featured-image-link img,
+    .article-image-link img,
+    .mini-article-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 650ms cubic-bezier(.2, .7, .2, 1);
+    }
+
+    .featured-image-link:hover img,
+    .article-image-link:hover img,
+    .mini-article:hover .mini-article-image img {
+      transform: scale(1.045);
+    }
+
+    .image-label {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 10px;
+      border: 1px solid rgb(255 255 255 / 70%);
+      border-radius: 999px;
+      background: rgb(255 255 255 / 91%);
+      color: #294c50;
+      font-size: 10px;
+      font-weight: 700;
+      backdrop-filter: blur(10px);
+    }
+
+    .image-label svg {
+      width: 13px;
+      height: 13px;
+      color: #319d91;
+    }
+
+    .featured-title {
+      margin: 14px 0 8px;
+      color: #17213a;
+      font-size: clamp(19px, 2.2vw, 25px);
+      font-weight: 750;
+      letter-spacing: -.035em;
+      line-height: 1.2;
+    }
+
+    .featured-title a,
+    .article-title a,
+    .mini-article-title a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 180ms ease;
+    }
+
+    .featured-title a:hover,
+    .article-title a:hover,
+    .mini-article-title a:hover {
+      color: #278f84;
+    }
+
+    .featured-excerpt {
+      max-width: 650px;
+      margin: 0;
+      color: #6d7a82;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 12px;
+      margin-top: 12px;
+      color: #7a878e;
+      font-size: 10px;
+    }
+
+    .author {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #475a63;
+    }
+
+    .author-avatar {
+      display: grid;
+      width: 22px;
+      height: 22px;
+      flex: 0 0 22px;
+      place-items: center;
+      border: 1px solid #d5ece7;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #d9f0e9, #f8e5d7);
+      color: #326b66;
+      font-size: 8px;
+      font-weight: 700;
+    }
+
+    .article-date {
+      padding-left: 11px;
+      border-left: 1px solid #e1e8e7;
+    }
+
+    .featured-side {
+      display: grid;
+      align-content: start;
+    }
+
+    .featured-side-heading {
+      margin: 0 0 7px;
+      color: #17213a;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .mini-article {
+      display: grid;
+      grid-template-columns: 90px minmax(0, 1fr);
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px solid #edf1f0;
+    }
+
+    .mini-article-image {
+      height: 75px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #e9f4f1;
+    }
+
+    .mini-article-copy {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .article-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #319d91;
+      font-size: 9px;
+      font-weight: 650;
+      line-height: 1.4;
+    }
+
+    .article-category svg {
+      width: 11px;
+      height: 11px;
+      flex: 0 0 auto;
+    }
+
+    .mini-article-title {
+      margin: 4px 0 5px;
+      color: #17213a;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .mini-article-meta {
+      color: #8a969b;
+      font-size: 9px;
+    }
+
+    .article-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin: clamp(42px, 6vw, 68px) 0 18px;
+    }
+
+    .search-box {
+      display: flex;
+      width: min(100%, 300px);
+      min-height: 39px;
+      align-items: center;
+      gap: 9px;
+      padding: 0 12px;
+      border: 1px solid #e6eeed;
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: 0 5px 16px rgb(25 66 66 / 4%);
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .search-box:focus-within {
+      border-color: #9bd5ca;
+      box-shadow: 0 0 0 3px rgb(85 184 172 / 12%);
+    }
+
+    .search-box svg {
+      width: 15px;
+      height: 15px;
+      flex: 0 0 auto;
+      color: #809097;
+    }
+
+    .search-box input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #17243b;
+      font: inherit;
+      font-size: 11px;
+    }
+
+    .search-box input::placeholder {
+      color: #8d999e;
+    }
+
+    .filter-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #596970;
+      font-size: 10px;
+    }
+
+    .filter-control label {
+      white-space: nowrap;
+    }
+
+    .filter-control select {
+      min-width: 155px;
+      min-height: 38px;
+      padding: 0 30px 0 12px;
+      border: 1px solid #e6eeed;
+      border-radius: 999px;
+      outline: 0;
+      background: #fff;
+      color: #53636b;
+      font: inherit;
+      font-size: 10px;
+      cursor: pointer;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .filter-control select:focus {
+      border-color: #9bd5ca;
+      box-shadow: 0 0 0 3px rgb(85 184 172 / 12%);
+    }
+
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .article-card {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid #edf1f0;
+      border-radius: 15px;
+      background: #fff;
+      box-shadow: 0 9px 28px rgb(27 52 66 / 5%);
+      animation: blog-card-enter 560ms cubic-bezier(.2, .7, .2, 1) both;
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    }
+
+    .article-card[hidden] {
+      display: none;
+    }
+
+    .article-card:hover {
+      transform: translateY(-5px);
+      border-color: #d7ebe6;
+      box-shadow: 0 17px 36px rgb(27 52 66 / 10%);
+    }
+
+    .article-image-link {
+      height: clamp(140px, 16vw, 190px);
+    }
+
+    .article-card-content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 14px 15px 13px;
+    }
+
+    .article-title {
+      margin: 7px 0 7px;
+      color: #17213a;
+      font-size: 15px;
+      font-weight: 750;
+      letter-spacing: -.025em;
+      line-height: 1.3;
+    }
+
+    .article-excerpt {
+      margin: 0;
+      color: #75828a;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .article-card .article-meta {
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 14px;
+      font-size: 9px;
+    }
+
+    .article-card .author {
+      gap: 6px;
+    }
+
+    .article-card .author-avatar {
+      width: 19px;
+      height: 19px;
+      flex-basis: 19px;
+      font-size: 7px;
+    }
+
+    .no-results {
+      margin: 22px 0;
+      padding: 25px;
+      border: 1px dashed #cfe4df;
+      border-radius: 14px;
+      color: #64727c;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .no-results[hidden] {
+      display: none;
+    }
+
+    .load-more-wrap {
+      margin-top: 28px;
+      text-align: center;
+    }
+
+    .load-more-button {
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 21px;
+      border: 0;
+      border-radius: 999px;
+      background: #55b8ac;
+      box-shadow: 0 8px 18px rgb(85 184 172 / 20%);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .load-more-button:hover {
+      transform: translateY(-2px);
+      background: #319d91;
+      box-shadow: 0 11px 22px rgb(49 157 145 / 26%);
+    }
+
+    .load-more-button svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 180ms ease;
+    }
+
+    .load-more-button:hover svg {
+      transform: translateY(2px);
+    }
+
+    .load-more-button[hidden] {
+      display: none;
+    }
+
+    .site-footer {
+      padding: 22px 20px;
+      border-top: 1px solid #edf1f0;
+      color: #7a8790;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .site-footer a {
+      color: #319d91;
+      text-decoration: none;
+      text-underline-offset: 3px;
+    }
+
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .blog-main a:focus-visible,
+    .blog-main button:focus-visible,
+    .blog-main input:focus-visible,
+    .blog-main select:focus-visible,
+    .site-header button:focus-visible,
+    #main-navigation a:focus-visible {
+      outline: 3px solid #319d91;
+      outline-offset: 3px;
+    }
+
+    .theme-dark {
+      background: #101722;
+      color: #f5f7fb;
+    }
+
+    .theme-dark .site-header {
+      border-color: #29394a;
+      background: rgb(16 23 34 / 94%);
+    }
+
+    .theme-dark .brand,
+    .theme-dark #main-navigation a,
+    .theme-dark .blog-title,
+    .theme-dark .featured-title,
+    .theme-dark .featured-side-heading,
+    .theme-dark .mini-article-title,
+    .theme-dark .article-title {
+      color: #f5f7fb;
+    }
+
+    .theme-dark #main-navigation a:hover,
+    .theme-dark #main-navigation a[aria-current="page"] {
+      color: #82d8cc;
+    }
+
+    .theme-dark .theme-toggle,
+    .theme-dark .menu-toggle {
+      border-color: #344154;
+      background: #202d3f;
+      color: #ffe08a;
+    }
+
+    .theme-dark .blog-subtitle,
+    .theme-dark .featured-excerpt,
+    .theme-dark .article-excerpt,
+    .theme-dark .contact-muted {
+      color: #b7c3ce;
+    }
+
+    .theme-dark .subscribe-form,
+    .theme-dark .search-box,
+    .theme-dark .filter-control select {
+      border-color: #344154;
+      background: #182332;
+      color: #f5f7fb;
+    }
+
+    .theme-dark .subscribe-form input,
+    .theme-dark .search-box input {
+      color: #f5f7fb;
+    }
+
+    .theme-dark .mini-article {
+      border-color: #29394a;
+    }
+
+    .theme-dark .article-card {
+      border-color: #2b3a4b;
+      background: #182332;
+    }
+
+    .theme-dark .article-card:hover {
+      border-color: #3b726b;
+    }
+
+    .theme-dark .author,
+    .theme-dark .article-meta,
+    .theme-dark .mini-article-meta,
+    .theme-dark .filter-control {
+      color: #b7c3ce;
+    }
+
+    .theme-dark .author-avatar {
+      border-color: #31514f;
+      background: linear-gradient(145deg, #254a48, #493942);
+      color: #c1e9e2;
+    }
+
+    .theme-dark .article-date {
+      border-color: #344154;
+    }
+
+    .theme-dark .no-results {
+      border-color: #344154;
+      color: #b7c3ce;
+    }
+
+    .theme-dark .site-footer {
+      border-color: #29394a;
+      color: #a4b1bd;
+    }
+
+    @keyframes blog-enter {
+      from { opacity: 0; transform: translateY(17px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blog-card-enter {
+      from { opacity: 0; transform: translateY(18px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @media (max-width: 1060px) {
+      .site-header { gap: 11px; }
+      #main-navigation { gap: 9px; }
+      #main-navigation a { font-size: 10px; }
+      .brand { font-size: 19px; }
+      .brand-mark { width: 34px; height: 34px; }
+    }
+
+    @media (max-width: 860px) {
+      .site-header {
+        min-height: 68px;
+        flex-wrap: wrap;
+        gap: 0;
+        padding: 10px 18px;
+      }
+
+      .brand { font-size: 19px; }
+      .brand-mark { width: 34px; height: 34px; }
+      .header-actions { gap: 8px; }
+      .theme-toggle, .menu-toggle { width: 36px; height: 36px; }
+      .menu-toggle { display: grid; }
+
+      #main-navigation {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 0 2px;
+      }
+
+      #main-navigation.is-open { display: flex; }
+
+      #main-navigation a {
+        padding: 11px 9px;
+        border-radius: 8px;
+        font-size: 13px;
+      }
+
+      #main-navigation a:hover { background: #f1f8f6; }
+      .theme-dark #main-navigation a:hover { background: #202d3f; }
+
+      #main-navigation a::after {
+        right: auto;
+        bottom: 7px;
+        left: 9px;
+        width: 25px;
+      }
+
+      .blog-main { padding-top: 105px; }
+      .blog-heading { align-items: flex-start; }
+    }
+
+    @media (max-width: 700px) {
+      .blog-main { padding: 98px 16px 54px; }
+      .blog-heading { flex-direction: column; gap: 16px; }
+      .subscribe-form { width: min(100%, 370px); }
+      .featured-grid { grid-template-columns: 1fr; gap: 22px; }
+      .featured-image-link { height: clamp(210px, 55vw, 330px); }
+      .featured-side { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
+      .featured-side-heading { grid-column: 1 / -1; margin-bottom: 4px; }
+      .mini-article { grid-template-columns: 76px minmax(0, 1fr); gap: 9px; }
+      .mini-article-image { height: 67px; }
+      .article-toolbar { align-items: stretch; flex-direction: column; }
+      .search-box { width: 100%; }
+      .filter-control { justify-content: space-between; }
+      .filter-control select { flex: 1; }
+      .article-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+      .article-image-link { height: clamp(135px, 30vw, 185px); }
+    }
+
+    @media (max-width: 480px) {
+      .blog-title { font-size: clamp(34px, 10vw, 44px); }
+      .blog-subtitle { font-size: 12px; }
+      .featured-side { grid-template-columns: 1fr; }
+      .mini-article { grid-template-columns: 86px minmax(0, 1fr); }
+      .mini-article-image { height: 70px; }
+      .article-grid { grid-template-columns: 1fr; gap: 16px; }
+      .article-image-link { height: 205px; }
+      .article-card-content { padding: 14px 15px 13px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      ::view-transition-old(page-content),
+      ::view-transition-new(page-content) {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Mecare home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M2 10h3l2-4 3 8 2-5 1 2h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Mecare
+    </a>
+    <nav id="main-navigation" aria-label="Main navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../Services/index.html">Services</a>
+      <a href="../Doctors/index.html">Doctors</a>
+      <a href="../Pricing/index.html">Pricing</a>
+      <a href="../About%20us/index.html">About us</a>
+      <a href="../Appointment/index.html">Appointment</a>
+      <a href="../Contact%20us/index.html">Contact us</a>
+      <a href="./index.html" aria-current="page">Blog</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Включить тёмную тему" aria-pressed="false">☾</button>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-navigation">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-transition-content blog-main">
+    <div class="blog-container">
+      <section class="blog-heading" aria-labelledby="blog-title">
+        <div>
+          <p class="blog-kicker">Fresh perspectives for better health</p>
+          <h1 class="blog-title" id="blog-title">The Mecare Blog</h1>
+          <p class="blog-subtitle">Boost your health by staying informed. Explore expert insights and the latest trends, thoughtfully brought to you by Mecare.</p>
+        </div>
+        <div>
+          <form class="subscribe-form" id="subscribe-form">
+            <span class="subscribe-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="15" height="12" rx="2"/><path d="m3.5 6 6.5 5 6.5-5"/></svg></span>
+            <label for="subscribe-email" hidden>Email address</label>
+            <input id="subscribe-email" name="email" type="email" autocomplete="email" placeholder="Your email address" required>
+            <button type="submit">Subscribe</button>
+          </form>
+          <p class="subscribe-status" id="subscribe-status" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="featured-grid" aria-label="Featured articles">
+        <article class="featured-article">
+          <a class="featured-image-link" href="#articles" aria-label="Explore patient engagement articles">
+            <img src="../../assets/14.svg" alt="Care professionals discussing a patient's wellness plan">
+            <span class="image-label"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.2 9.8 5l4.2.6-3 2.9.7 4.2L8 10.7l-3.7 2 .7-4.2-3-3L6.2 5 8 1.2Z"/></svg>Editor's pick</span>
+          </a>
+          <p class="article-category" style="margin-top:13px"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.3 14.3 8 8 14.7 1.7 8 8 1.3Zm0 3.2L4.7 8 8 11.5 11.3 8 8 4.5Z"/></svg>Healthcare technology</p>
+          <h2 class="featured-title"><a href="#articles">Elevating Patient Engagement Through Innovative Technology Solutions</a></h2>
+          <p class="featured-excerpt">Discover how thoughtful digital tools help care teams create more connected, welcoming experiences for every patient.</p>
+          <div class="article-meta">
+            <span class="author"><span class="author-avatar" aria-hidden="true">JK</span>Joanna Kaminska</span>
+            <time class="article-date" datetime="2026-08-26">26 August 2026</time>
+          </div>
+        </article>
+
+        <aside class="featured-side" aria-labelledby="popular-articles-title">
+          <h2 class="featured-side-heading" id="popular-articles-title">Popular this week</h2>
+          <article class="mini-article">
+            <a class="mini-article-image" href="#articles" aria-label="Read about diagnostic imaging"><img src="../../assets/15.svg" alt="Eye care specialist examining a patient"></a>
+            <div class="mini-article-copy">
+              <span class="article-category">Diagnostic services</span>
+              <h3 class="mini-article-title"><a href="#articles">Advanced Diagnostic Imaging: A Clearer View of Your Health</a></h3>
+              <span class="mini-article-meta">Kimberlee Meier · 5 min read</span>
+            </div>
+          </article>
+          <article class="mini-article">
+            <a class="mini-article-image" href="#articles" aria-label="Read about comprehensive dental care"><img src="../../assets/фото3.jpg" alt="Medical specialist providing attentive care"></a>
+            <div class="mini-article-copy">
+              <span class="article-category">Dental services</span>
+              <h3 class="mini-article-title"><a href="#articles">Comprehensive Dental Care for a Healthy, Bright Smile</a></h3>
+              <span class="mini-article-meta">Kimberlee Meier · 4 min read</span>
+            </div>
+          </article>
+          <article class="mini-article">
+            <a class="mini-article-image" href="#articles" aria-label="Read about living well"><img src="../../assets/16.svg" alt="Healthcare professionals collaborating on patient care"></a>
+            <div class="mini-article-copy">
+              <span class="article-category">Healthcare services</span>
+              <h3 class="mini-article-title"><a href="#articles">Unveiling the Essential Secrets for Achieving Lifelong Wellness</a></h3>
+              <span class="mini-article-meta">Kimberlee Meier · 6 min read</span>
+            </div>
+          </article>
+        </aside>
+      </section>
+
+      <section id="articles" aria-labelledby="articles-title">
+        <div class="article-toolbar">
+          <h2 id="articles-title" hidden>Latest articles</h2>
+          <label class="search-box" for="article-search">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="8.7" cy="8.7" r="5.8"/><path d="m13 13 4 4"/></svg>
+            <input id="article-search" type="search" placeholder="Search the Mecare blog" autocomplete="off">
+          </label>
+          <div class="filter-control">
+            <label for="category-filter">Filtered by Categories</label>
+            <select id="category-filter">
+              <option value="all">All categories</option>
+              <option value="Healthcare services">Healthcare services</option>
+              <option value="Eye care services">Eye care services</option>
+              <option value="Healthcare technology">Healthcare technology</option>
+              <option value="Medical software">Medical software</option>
+              <option value="Diagnostic services">Diagnostic services</option>
+              <option value="Dental services">Dental services</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="article-grid" id="article-grid" aria-live="polite">
+          <article class="article-card" data-category="Healthcare services" data-search="our dedication enhancing your overall wellness care team wellness prevention">
+            <a class="article-image-link" href="#articles" aria-label="Read Our Dedication to Enhancing Your Overall Wellness"><img src="../../assets/14.svg" alt="Healthcare team discussing a patient's wellness"></a>
+            <div class="article-card-content">
+              <span class="article-category">Healthcare services</span>
+              <h3 class="article-title"><a href="#articles">Our Dedication to Enhancing Your Overall Wellness</a></h3>
+              <p class="article-excerpt">We take immense pride in nurturing your vitality, dedicating ourselves to supporting your health and well-being every step of the way.</p>
+              <div class="article-meta"><time datetime="2026-08-24">24 August 2026</time><span class="author"><span class="author-avatar" aria-hidden="true">RP</span>Ravi Patel</span></div>
+            </div>
+          </article>
+
+          <article class="article-card" data-category="Eye care services" data-search="holistic eye care optimal solutions vision health eyes examination">
+            <a class="article-image-link" href="#articles" aria-label="Read Holistic Eye Care: Optimal Solutions for Vision Health"><img src="../../assets/15.svg" alt="Eye care specialist helping a patient during an examination"></a>
+            <div class="article-card-content">
+              <span class="article-category">Eye care services</span>
+              <h3 class="article-title"><a href="#articles">Holistic Eye Care: Optimal Solutions for Vision Health</a></h3>
+              <p class="article-excerpt">Discover the latest in eye care and the small, practical steps that can help protect your vision at every age.</p>
+              <div class="article-meta"><time datetime="2026-08-24">24 August 2026</time><span class="author"><span class="author-avatar" aria-hidden="true">JK</span>Joanna Kaminska</span></div>
+            </div>
+          </article>
+
+          <article class="article-card" data-category="Healthcare services" data-search="leading charge healthier more vibrant you patient care">
+            <a class="article-image-link" href="#articles" aria-label="Read Leading the Charge Toward a Healthier You"><img src="../../assets/16.svg" alt="Doctors working together to plan patient care"></a>
+            <div class="article-card-content">
+              <span class="article-category">Healthcare services</span>
+              <h3 class="article-title"><a href="#articles">Leading the Charge Toward a Healthier, More Vibrant You</a></h3>
+              <p class="article-excerpt">Learn how a supportive care team can help you build healthy habits and feel confident about your well-being.</p>
+              <div class="article-meta"><time datetime="2026-08-25">25 August 2026</time><span class="author"><span class="author-avatar" aria-hidden="true">NN</span>Nathalia Nowak</span></div>
+            </div>
+          </article>
+
+          <article class="article-card" data-category="Medical software" data-search="enhancing efficiency medical software digital tools healthcare">
+            <a class="article-image-link" href="#articles" aria-label="Read Enhancing Efficiency with Medical Software"><img src="../../assets/2.svg" alt="Digital healthcare information supporting a clinician"></a>
+            <div class="article-card-content">
+              <span class="article-category">Medical software</span>
+              <h3 class="article-title"><a href="#articles">Enhancing Efficiency with Medical Software</a></h3>
+              <p class="article-excerpt">We explore digital tools that make everyday care more organized, accessible, and connected for patients and teams.</p>
+              <div class="article-meta"><time datetime="2026-08-25">25 August 2026</time><span class="author"><span class="author-avatar" aria-hidden="true">LM</span>Lena Miller</span></div>
+            </div>
+          </article>
+
+          <article class="article-card" data-category="Healthcare services" data-search="enhancing patient interaction innovative technology communication">
+            <a class="article-image-link" href="#articles" aria-label="Read Enhancing Patient Interaction Through Innovative Technology"><img src="../../assets/3.svg" alt="Modern medical technology used in patient care"></a>
+            <div class="article-card-content">
+              <span class="article-category">Healthcare services</span>
+              <h3 class="article-title"><a href="#articles">Enhancing Patient Interaction Through Innovative Technology</a></h3>
+              <p class="article-excerpt">See how easy-to-use technology can make every conversation with your care team more helpful and personal.</p>
+              <div class="article-meta"><time datetime="2026-08-26">26 August 2026</time><span class="author"><span class="author-avatar" aria-hidden="true">JK</span>Joanna Kaminska</span></div>
+            </div>
+          </article>
+
+          <article class="article-card" data-category="Healthcare services" data-search="simplifying enhancing your healthcare experience patient first">
+            <a class="article-image-link" href="#articles" aria-label="Read Simplifying and Enhancing Your Healthcare Experience"><img src="../../assets/4.svg" alt="Doctor reviewing a patient's healthcare information"></a>
+            <div class="article-card-content">
+              <span class="article-category">Healthcare services</span>
+              <h3 class="article-title"><a href="#articles">Simplifying and Enhancing Your Healthcare Experience</a></h3>
+              <p class="article-excerpt">A few thoughtful changes can make finding the right care and keeping track of your health feel easier.</p>
+              <div class="article-meta"><time datetime="2026-08-26">26 August 2026</time><span class="author"><span class="author-avatar" aria-hidden="true">JK</span>Joanna Kaminska</span></div>
+            </div>
+          </article>
+
+          <article class="article-card" data-category="Diagnostic services" data-search="advanced diagnostic imaging clear view health scans">
+            <a class="article-image-link" href="#articles" aria-label="Read Advanced Diagnostic Imaging"><img src="../../assets/5.svg" alt="Doctor providing a health check to a patient"></a>
+            <div class="article-card-content">
+              <span class="article-category">Diagnostic services</span>
+              <h3 class="article-title"><a href="#articles">A Clearer Picture: Understanding Diagnostic Imaging</a></h3>
+              <p class="article-excerpt">A friendly guide to common imaging tests and how your care team uses them to learn more about your health.</p>
+              <div class="article-meta"><time datetime="2026-08-27">27 August 2026</time><span class="author"><span class="author-avatar" aria-hidden="true">KM</span>Kimberlee Meier</span></div>
+            </div>
+          </article>
+
+          <article class="article-card" data-category="Dental services" data-search="comprehensive dental care healthy bright smile teeth">
+            <a class="article-image-link" href="#articles" aria-label="Read Comprehensive Dental Care"><img src="../../assets/фото3.jpg" alt="Healthcare specialist providing a careful examination"></a>
+            <div class="article-card-content">
+              <span class="article-category">Dental services</span>
+              <h3 class="article-title"><a href="#articles">Everyday Steps Toward a Healthy, Bright Smile</a></h3>
+              <p class="article-excerpt">Explore simple routines and preventive visits that support a healthy smile through every stage of life.</p>
+              <div class="article-meta"><time datetime="2026-08-27">27 August 2026</time><span class="author"><span class="author-avatar" aria-hidden="true">KM</span>Kimberlee Meier</span></div>
+            </div>
+          </article>
+
+          <article class="article-card" data-category="Healthcare technology" data-search="connected care future healthcare technology teams">
+            <a class="article-image-link" href="#articles" aria-label="Read The Future of Connected Care"><img src="../../assets/16.svg" alt="Healthcare professionals collaborating on patient care"></a>
+            <div class="article-card-content">
+              <span class="article-category">Healthcare technology</span>
+              <h3 class="article-title"><a href="#articles">The Future of Connected Care Starts with Listening</a></h3>
+              <p class="article-excerpt">Technology works best when it brings people closer. Discover what connected, patient-centered care can look like.</p>
+              <div class="article-meta"><time datetime="2026-08-28">28 August 2026</time><span class="author"><span class="author-avatar" aria-hidden="true">RP</span>Ravi Patel</span></div>
+            </div>
+          </article>
+        </div>
+
+        <p class="no-results" id="no-results" hidden>No articles match your search. Try another keyword or category.</p>
+
+        <div class="load-more-wrap">
+          <button class="load-more-button" id="load-more" type="button" aria-label="Show more articles">
+            <span>Show more</span>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 7.5 5 5 5-5"/></svg>
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Mecare. All rights reserved.</span>
+    <span aria-hidden="true"> · </span>
+    <a href="../../index.html">Back to home</a>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector("#menu-toggle");
+    const mainNavigation = document.querySelector("#main-navigation");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = menuToggle.getAttribute("aria-expanded") !== "true";
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
+      mainNavigation.classList.toggle("is-open", isOpen);
+    });
+
+    mainNavigation.addEventListener("click", (event) => {
+      if (event.target.closest("a") && window.matchMedia("(max-width: 860px)").matches) {
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Открыть меню");
+        mainNavigation.classList.remove("is-open");
+      }
+    });
+
+    document.querySelector("#theme-toggle").addEventListener("click", (event) => {
+      const isDark = document.body.classList.toggle("theme-dark");
+      event.currentTarget.textContent = isDark ? "☀" : "☾";
+      event.currentTarget.setAttribute("aria-pressed", String(isDark));
+      event.currentTarget.setAttribute("aria-label", isDark ? "Включить светлую тему" : "Включить тёмную тему");
+    });
+
+    const articleCards = Array.from(document.querySelectorAll(".article-card"));
+    const articleSearch = document.querySelector("#article-search");
+    const categoryFilter = document.querySelector("#category-filter");
+    const loadMore = document.querySelector("#load-more");
+    const noResults = document.querySelector("#no-results");
+    let showAllArticles = false;
+
+    function filterArticles() {
+      const query = articleSearch.value.trim().toLowerCase();
+      const category = categoryFilter.value;
+      let matchingCount = 0;
+
+      articleCards.forEach((card, index) => {
+        const matchesQuery = !query || card.dataset.search.includes(query);
+        const matchesCategory = category === "all" || card.dataset.category === category;
+        const matches = matchesQuery && matchesCategory;
+        const initiallyVisible = index < 6 || showAllArticles || query || category !== "all";
+        card.hidden = !matches || !initiallyVisible;
+        if (matches) matchingCount += 1;
+      });
+
+      noResults.hidden = matchingCount !== 0;
+      loadMore.hidden = showAllArticles || query.length > 0 || category !== "all" || articleCards.length <= 6;
+    }
+
+    articleSearch.addEventListener("input", filterArticles);
+    categoryFilter.addEventListener("change", filterArticles);
+    loadMore.addEventListener("click", () => {
+      showAllArticles = true;
+      filterArticles();
+    });
+
+    document.querySelector("#subscribe-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      document.querySelector("#subscribe-status").textContent =
+        "Thanks for your interest. Newsletter subscriptions are not sent from this demo.";
+    });
+
+    filterArticles();
+  </script>
+</body>
+</html>

@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Contact the Mecare team. Tell us how we can help and we will point you in the right direction.">
+  <title>Contact Us | Mecare</title>
+  <link rel="shortcut icon" href="../../assets/20.svg" type="image/x-icon">
+  <link rel="stylesheet" href="./src/output.css">
+  <style>
+    @view-transition {
+      navigation: auto;
+    }
+
+    .page-transition-content {
+      view-transition-name: page-content;
+    }
+
+    ::view-transition-old(page-content) {
+      animation: page-content-out 180ms ease both;
+    }
+
+    ::view-transition-new(page-content) {
+      animation: page-content-in 420ms cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    @keyframes page-content-out {
+      to { opacity: 0; transform: translateX(-12px) scale(.99); }
+    }
+
+    @keyframes page-content-in {
+      from { opacity: 0; transform: translateX(20px) scale(.99); }
+      to { opacity: 1; transform: translateX(0) scale(1); }
+    }
+
+    body {
+      min-width: 320px;
+      overflow-x: hidden;
+      background: #fff;
+      color: #0c1529;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .site-header {
+      position: fixed;
+      z-index: 20;
+      inset: 0 0 auto;
+      display: flex;
+      min-height: 76px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 12px clamp(18px, 4vw, 64px);
+      border-bottom: 1px solid rgb(226 236 234 / 70%);
+      background: rgb(255 255 255 / 92%);
+      box-shadow: 0 4px 20px rgb(20 50 55 / 4%);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 10px;
+      color: #111a2d;
+      font-size: 21px;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border-radius: 10px;
+      background: #55b8ac;
+      color: #fff;
+    }
+
+    .brand-mark svg {
+      width: 23px;
+      height: 23px;
+    }
+
+    #main-navigation {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 1.8vw, 24px);
+    }
+
+    #main-navigation a {
+      position: relative;
+      padding: 10px 0;
+      color: #263447;
+      font-size: 12px;
+      text-decoration: none;
+      transition: color 180ms ease, transform 180ms ease;
+    }
+
+    #main-navigation a::after {
+      position: absolute;
+      right: 0;
+      bottom: 3px;
+      left: 0;
+      height: 2px;
+      border-radius: 2px;
+      background: #55b8ac;
+      content: "";
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 220ms ease;
+    }
+
+    #main-navigation a:hover,
+    #main-navigation a[aria-current="page"] {
+      color: #278f84;
+    }
+
+    #main-navigation a:hover::after,
+    #main-navigation a[aria-current="page"]::after {
+      transform: scaleX(1);
+    }
+
+    .header-actions {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .theme-toggle,
+    .menu-toggle {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 1px solid #e4edeb;
+      border-radius: 50%;
+      background: #f1f7f5;
+      color: #233446;
+      cursor: pointer;
+      font-size: 19px;
+      transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .theme-toggle:hover,
+    .menu-toggle:hover {
+      transform: translateY(-2px);
+      background: #e4f6f1;
+      box-shadow: 0 5px 14px rgb(44 135 124 / 12%);
+    }
+
+    .menu-toggle {
+      display: none;
+      border-radius: 10px;
+    }
+
+    .contact-main {
+      min-height: calc(100vh - 76px);
+      padding: clamp(122px, 14vw, 166px) 20px 82px;
+    }
+
+    .contact-layout {
+      display: grid;
+      width: min(100%, 1060px);
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      align-items: center;
+      gap: clamp(36px, 7vw, 88px);
+      margin: 0 auto;
+    }
+
+    .contact-copy {
+      animation: contact-enter 700ms cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    .contact-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 15px;
+      color: #319d91;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .contact-eyebrow::before {
+      width: 20px;
+      height: 2px;
+      border-radius: 2px;
+      background: #55b8ac;
+      content: "";
+    }
+
+    .contact-title {
+      max-width: 470px;
+      margin: 0;
+      color: #101a31;
+      font-size: clamp(36px, 4vw, 50px);
+      font-weight: 750;
+      letter-spacing: -.05em;
+      line-height: 1.04;
+    }
+
+    .contact-intro {
+      max-width: 435px;
+      margin: 15px 0 0;
+      color: #64727c;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .contact-benefits {
+      display: grid;
+      gap: 14px;
+      margin: 26px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .contact-benefits li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #25334a;
+      font-size: 12px;
+      line-height: 1.5;
+      animation: contact-enter 600ms both;
+    }
+
+    .contact-benefits li:nth-child(2) { animation-delay: 60ms; }
+    .contact-benefits li:nth-child(3) { animation-delay: 120ms; }
+    .contact-benefits li:nth-child(4) { animation-delay: 180ms; }
+    .contact-benefits li:nth-child(5) { animation-delay: 240ms; }
+
+    .contact-check {
+      display: grid;
+      width: 17px;
+      height: 17px;
+      flex: 0 0 17px;
+      place-items: center;
+      margin-top: 1px;
+      border: 1px solid #cfe9e4;
+      border-radius: 50%;
+      background: #f2faf8;
+      color: #319d91;
+    }
+
+    .contact-check svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    .contact-help {
+      margin: 25px 0 0;
+      color: #617079;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .contact-help a {
+      color: #319d91;
+      font-weight: 650;
+      text-decoration: none;
+      text-underline-offset: 3px;
+    }
+
+    .contact-help a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin-top: 17px;
+    }
+
+    .contact-details a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #445761;
+      font-size: 11px;
+      text-decoration: none;
+      transition: color 180ms ease, transform 180ms ease;
+    }
+
+    .contact-details a:hover {
+      transform: translateX(2px);
+      color: #278f84;
+    }
+
+    .contact-details svg {
+      width: 15px;
+      height: 15px;
+      color: #319d91;
+    }
+
+    .contact-form-card {
+      position: relative;
+      isolation: isolate;
+      padding: clamp(22px, 3.2vw, 36px);
+      border: 1px solid #edf2f1;
+      border-radius: 21px;
+      background: #fff;
+      box-shadow: 0 18px 55px rgb(29 70 73 / 9%);
+      animation: contact-enter 800ms 120ms cubic-bezier(.2, .7, .2, 1) both;
+      transition: transform 240ms ease, box-shadow 240ms ease;
+    }
+
+    .contact-form-card::before {
+      position: absolute;
+      z-index: -1;
+      top: -13px;
+      right: 32px;
+      left: 32px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgb(85 184 172 / 13%);
+      content: "";
+      filter: blur(14px);
+    }
+
+    .contact-form-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 64px rgb(29 70 73 / 12%);
+    }
+
+    .contact-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px 14px;
+    }
+
+    .form-field {
+      display: grid;
+      min-width: 0;
+      gap: 7px;
+    }
+
+    .form-field--full,
+    .services-fieldset,
+    .form-status,
+    .form-submit-row {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label,
+    .services-fieldset legend {
+      color: #384852;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      min-height: 42px;
+      padding: 0 12px;
+      border: 1px solid #e6eeed;
+      border-radius: 10px;
+      outline: none;
+      background: #fff;
+      color: #17243b;
+      font: inherit;
+      font-size: 12px;
+      box-shadow: 0 3px 10px rgb(20 50 55 / 3%);
+      transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: #9aa5aa;
+    }
+
+    .form-field input:hover,
+    .form-field textarea:hover {
+      border-color: #c8e5df;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: #55b8ac;
+      box-shadow: 0 0 0 3px rgb(85 184 172 / 15%);
+    }
+
+    .form-field textarea {
+      min-height: 104px;
+      padding: 12px;
+      resize: vertical;
+    }
+
+    .services-fieldset {
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .services-fieldset legend {
+      margin-bottom: 10px;
+      padding: 0;
+    }
+
+    .services-options {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px 12px;
+    }
+
+    .service-option {
+      display: inline-flex;
+      min-width: 0;
+      align-items: center;
+      gap: 7px;
+      color: #697780;
+      cursor: pointer;
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    .service-option input {
+      width: 15px;
+      height: 15px;
+      flex: 0 0 15px;
+      margin: 0;
+      accent-color: #55b8ac;
+    }
+
+    .service-option input:focus-visible {
+      outline: 2px solid #319d91;
+      outline-offset: 3px;
+    }
+
+    .form-status {
+      min-height: 0;
+      margin: 0;
+      color: #287c70;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .form-status:not(:empty) {
+      padding: 10px 12px;
+      border: 1px solid #cfece5;
+      border-radius: 10px;
+      background: #effaf7;
+    }
+
+    .form-submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .submit-button {
+      display: inline-flex;
+      min-height: 43px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 999px;
+      background: #55b8ac;
+      box-shadow: 0 8px 18px rgb(85 184 172 / 22%);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .submit-button:hover {
+      transform: translateY(-2px);
+      background: #319d91;
+      box-shadow: 0 11px 22px rgb(49 157 145 / 27%);
+    }
+
+    .submit-button:active {
+      transform: translateY(0);
+    }
+
+    .submit-button svg {
+      width: 15px;
+      height: 15px;
+      transition: transform 180ms ease;
+    }
+
+    .submit-button:hover svg {
+      transform: translateX(3px);
+    }
+
+    .privacy-hint {
+      max-width: 190px;
+      margin: 0;
+      color: #87939a;
+      font-size: 10px;
+      line-height: 1.5;
+      text-align: right;
+    }
+
+    .site-footer {
+      padding: 20px;
+      border-top: 1px solid #edf1f0;
+      color: #7a8790;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .site-footer a {
+      color: #319d91;
+      text-decoration: none;
+      text-underline-offset: 3px;
+    }
+
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-main a:focus-visible,
+    .site-header button:focus-visible,
+    #main-navigation a:focus-visible {
+      outline: 3px solid #319d91;
+      outline-offset: 3px;
+    }
+
+    .theme-dark {
+      background: #101722;
+      color: #f5f7fb;
+    }
+
+    .theme-dark .site-header {
+      border-color: #29394a;
+      background: rgb(16 23 34 / 94%);
+    }
+
+    .theme-dark .brand,
+    .theme-dark #main-navigation a,
+    .theme-dark .contact-title,
+    .theme-dark .contact-benefits li {
+      color: #f5f7fb;
+    }
+
+    .theme-dark #main-navigation a:hover,
+    .theme-dark #main-navigation a[aria-current="page"] {
+      color: #82d8cc;
+    }
+
+    .theme-dark .theme-toggle,
+    .theme-dark .menu-toggle {
+      border-color: #344154;
+      background: #202d3f;
+      color: #ffe08a;
+    }
+
+    .theme-dark .contact-intro,
+    .theme-dark .contact-help,
+    .theme-dark .contact-details a {
+      color: #b7c3ce;
+    }
+
+    .theme-dark .contact-form-card {
+      border-color: #2b3a4b;
+      background: #182332;
+      box-shadow: 0 18px 55px rgb(0 0 0 / 18%);
+    }
+
+    .theme-dark .form-field label,
+    .theme-dark .services-fieldset legend {
+      color: #d3dde4;
+    }
+
+    .theme-dark .form-field input,
+    .theme-dark .form-field textarea {
+      border-color: #344154;
+      background: #101a28;
+      color: #f5f7fb;
+    }
+
+    .theme-dark .form-field input::placeholder,
+    .theme-dark .form-field textarea::placeholder,
+    .theme-dark .service-option,
+    .theme-dark .privacy-hint {
+      color: #a4b1bd;
+    }
+
+    .theme-dark .form-status:not(:empty) {
+      border-color: #31514f;
+      background: #203d3d;
+      color: #a3e2d7;
+    }
+
+    .theme-dark .site-footer {
+      border-color: #29394a;
+      color: #a4b1bd;
+    }
+
+    @keyframes contact-enter {
+      from { opacity: 0; transform: translateY(19px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 950px) {
+      .site-header { gap: 12px; }
+      #main-navigation { gap: 11px; }
+      #main-navigation a { font-size: 11px; }
+      .contact-layout { gap: 32px; }
+    }
+
+    @media (max-width: 760px) {
+      .site-header {
+        min-height: 68px;
+        flex-wrap: wrap;
+        gap: 0;
+        padding: 10px 18px;
+      }
+
+      .brand { font-size: 19px; }
+      .brand-mark { width: 34px; height: 34px; }
+      .header-actions { gap: 8px; }
+      .theme-toggle, .menu-toggle { width: 36px; height: 36px; }
+      .menu-toggle { display: grid; }
+
+      #main-navigation {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 0 2px;
+      }
+
+      #main-navigation.is-open { display: flex; }
+
+      #main-navigation a {
+        padding: 11px 9px;
+        border-radius: 8px;
+        font-size: 13px;
+      }
+
+      #main-navigation a:hover { background: #f1f8f6; }
+      .theme-dark #main-navigation a:hover { background: #202d3f; }
+
+      #main-navigation a::after {
+        right: auto;
+        bottom: 7px;
+        left: 9px;
+        width: 25px;
+      }
+
+      .contact-main { padding-top: 108px; }
+      .contact-layout {
+        width: min(100%, 590px);
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .contact-copy { max-width: 560px; }
+      .contact-title { max-width: 540px; }
+      .contact-benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px 15px; }
+      .contact-help { margin-top: 20px; }
+      .contact-form-card { padding: clamp(22px, 5vw, 32px); }
+    }
+
+    @media (max-width: 460px) {
+      .contact-main { padding: 96px 15px 52px; }
+      .contact-layout { gap: 25px; }
+      .contact-eyebrow { margin-bottom: 12px; font-size: 9px; }
+      .contact-title { font-size: clamp(36px, 10vw, 44px); }
+      .contact-intro { margin-top: 12px; font-size: 13px; }
+      .contact-benefits { grid-template-columns: 1fr; gap: 11px; margin-top: 21px; }
+      .contact-help { margin-top: 18px; }
+      .contact-form-card { border-radius: 17px; }
+      .contact-form { gap: 13px 10px; }
+      .form-field input { min-height: 42px; padding: 0 10px; }
+      .services-options { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
+      .form-submit-row { align-items: flex-start; flex-direction: column; }
+      .privacy-hint { max-width: none; text-align: left; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      ::view-transition-old(page-content),
+      ::view-transition-new(page-content) {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Mecare home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M2 10h3l2-4 3 8 2-5 1 2h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Mecare
+    </a>
+    <nav id="main-navigation" aria-label="Main navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../Services/index.html">Services</a>
+      <a href="../Doctors/index.html">Doctors</a>
+      <a href="../Pricing/index.html">Pricing</a>
+      <a href="../About%20us/index.html">About us</a>
+      <a href="../Appointment/index.html">Appointment</a>
+      <a href="./index.html" aria-current="page">Contact us</a>
+      <a href="../Blog/index.html">Blog</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Включить тёмную тему" aria-pressed="false">☾</button>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-navigation">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-transition-content contact-main">
+    <section class="contact-layout" aria-labelledby="contact-title">
+      <div class="contact-copy">
+        <p class="contact-eyebrow">We're here to help</p>
+        <h1 class="contact-title" id="contact-title">Let's Start a Conversation</h1>
+        <p class="contact-intro">Reach out to us and let's begin a conversation about your needs. We're here to listen, answer your questions, and help you find the right care.</p>
+
+        <ul class="contact-benefits">
+          <li><span class="contact-check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8 3 3 6-6"/></svg></span><span>Connect with the right care team</span></li>
+          <li><span class="contact-check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8 3 3 6-6"/></svg></span><span>Get answers about our services</span></li>
+          <li><span class="contact-check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8 3 3 6-6"/></svg></span><span>Find support for your next steps</span></li>
+          <li><span class="contact-check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8 3 3 6-6"/></svg></span><span>Explore care options that work for you</span></li>
+          <li><span class="contact-check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8 3 3 6-6"/></svg></span><span>Speak with our friendly support team</span></li>
+        </ul>
+
+        <p class="contact-help">Need help now? Call our care team or email us and we'll point you in the right direction.</p>
+        <div class="contact-details">
+          <a href="tel:+18005550100"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3H4a1 1 0 0 0-1 1c0 7.2 5.8 13 13 13a1 1 0 0 0 1-1v-2l-4-2-2 2a11 11 0 0 1-5-5l2-2-2-4Z"/></svg>(800) 555-0100</a>
+          <a href="mailto:hello@mecare.example"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="15" height="12" rx="2"/><path d="m3.5 6 6.5 5 6.5-5"/></svg>hello@mecare.example</a>
+        </div>
+      </div>
+
+      <div class="contact-form-card">
+        <form class="contact-form" id="contact-form">
+          <div class="form-field">
+            <label for="first-name">First Name<span aria-hidden="true"> *</span></label>
+            <input id="first-name" name="firstName" type="text" autocomplete="given-name" placeholder="Your first name" required>
+          </div>
+          <div class="form-field">
+            <label for="last-name">Last Name<span aria-hidden="true"> *</span></label>
+            <input id="last-name" name="lastName" type="text" autocomplete="family-name" placeholder="Your last name" required>
+          </div>
+          <div class="form-field">
+            <label for="email">Your Email<span aria-hidden="true"> *</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-field">
+            <label for="phone">Your Number</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 555-0123">
+          </div>
+
+          <fieldset class="services-fieldset">
+            <legend>How can we help?</legend>
+            <div class="services-options">
+              <label class="service-option"><input type="checkbox" name="services" value="cardiology"> Cardiology</label>
+              <label class="service-option"><input type="checkbox" name="services" value="endocrinology"> Endocrinology</label>
+              <label class="service-option"><input type="checkbox" name="services" value="neurology"> Neurology</label>
+              <label class="service-option"><input type="checkbox" name="services" value="eye-care"> Eye care</label>
+              <label class="service-option"><input type="checkbox" name="services" value="dentistry"> Dentistry</label>
+              <label class="service-option"><input type="checkbox" name="services" value="other"> Other</label>
+            </div>
+          </fieldset>
+
+          <div class="form-field form-field--full">
+            <label for="message">Message<span aria-hidden="true"> *</span></label>
+            <textarea id="message" name="message" maxlength="1000" placeholder="Tell us a little about what you need..." required></textarea>
+          </div>
+
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+
+          <div class="form-submit-row">
+            <button class="submit-button" type="submit">
+              Send Message
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg>
+            </button>
+            <p class="privacy-hint">Demo form only — your details are not sent or stored.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer relative mt-16 bg-white dark:bg-[#101722]" id="site-footer">
+    <div class="mx-auto w-[min(92vw,1200px)]">
+      <div class="grid gap-8 py-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 lg:py-14">
+        <div class="footer-column">
+          <h2 class="text-sm font-bold text-[#111a2d] dark:text-[#f5f7fb]">Solutions</h2>
+          <ul class="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <li><a class="footer-link" href="../../index.html#health-packages">Health check-up plans</a></li>
+            <li><a class="footer-link" href="../Services/index.html#care-title">Healthcare solutions</a></li>
+            <li><a class="footer-link" href="../Blog/index.html#articles">Health insights</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h2 class="text-sm font-bold text-[#111a2d] dark:text-[#f5f7fb]">Company</h2>
+          <ul class="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <li><a class="footer-link" href="../About%20us/index.html">About us</a></li>
+            <li><a class="footer-link" href="../Blog/index.html">Health journal</a></li>
+            <li><a class="footer-link" href="./index.html">Careers</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h2 class="text-sm font-bold text-[#111a2d] dark:text-[#f5f7fb]">Get in touch</h2>
+          <address class="mt-4 space-y-3 text-sm not-italic text-slate-600 dark:text-slate-300">
+            <a class="footer-contact" href="tel:+18005550100"><img class="size-4" src="../../assets/21.svg" alt=""><span>(800) 555-0100</span></a>
+            <a class="footer-contact" href="mailto:hello@mecare.example"><img class="size-4" src="../../assets/22.svg" alt=""><span>hello@mecare.example</span></a>
+            <p class="footer-contact items-start"><img class="mt-0.5 size-4" src="../../assets/23.svg" alt=""><span>Online care and support<br>wherever you are</span></p>
+          </address>
+        </div>
+
+        <div class="footer-column">
+          <h2 class="text-sm font-bold text-[#111a2d] dark:text-[#f5f7fb]">Follow us on</h2>
+          <div class="mt-4 flex items-center gap-4" aria-label="Social networks">
+            <span class="footer-social" aria-label="Facebook"><img class="size-4" src="../../assets/24.svg" alt=""></span>
+            <span class="footer-social" aria-label="LinkedIn"><img class="size-4" src="../../assets/25.svg" alt=""></span>
+            <span class="footer-social" aria-label="Instagram"><img class="size-4" src="../../assets/26.svg" alt=""></span>
+            <span class="footer-social" aria-label="YouTube"><img class="size-4" src="../../assets/27.svg" alt=""></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-5 border-t border-slate-200 py-5 text-center sm:flex-row sm:justify-between sm:text-left dark:border-slate-700">
+        <p class="text-xs text-slate-500 dark:text-slate-400">© 2026 Mecare. All rights reserved.</p>
+        <a class="inline-flex items-center gap-2 text-base font-bold text-[#111a2d] no-underline dark:text-[#f5f7fb]" href="../../index.html" aria-label="Mecare home">
+          <img class="size-7 rounded-md" src="../../assets/20.svg" alt="">
+          Mecare
+        </a>
+        <div class="flex items-center gap-5 text-xs text-slate-500 dark:text-slate-400">
+          <a class="footer-link" href="#site-footer">Terms of service</a>
+          <a class="footer-link" href="#site-footer">Privacy policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector("#menu-toggle");
+    const mainNavigation = document.querySelector("#main-navigation");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = menuToggle.getAttribute("aria-expanded") !== "true";
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
+      mainNavigation.classList.toggle("is-open", isOpen);
+    });
+
+    mainNavigation.addEventListener("click", (event) => {
+      if (event.target.closest("a") && window.matchMedia("(max-width: 760px)").matches) {
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Открыть меню");
+        mainNavigation.classList.remove("is-open");
+      }
+    });
+
+    document.querySelector("#theme-toggle").addEventListener("click", (event) => {
+      const isDark = document.body.classList.toggle("theme-dark");
+      event.currentTarget.textContent = isDark ? "☀" : "☾";
+      event.currentTarget.setAttribute("aria-pressed", String(isDark));
+      event.currentTarget.setAttribute("aria-label", isDark ? "Включить светлую тему" : "Включить тёмную тему");
+    });
+
+    document.querySelector("#contact-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      document.querySelector("#form-status").textContent =
+        "Your message is ready. This demo does not send or save contact details.";
+    });
+  </script>
+</body>
+</html>
